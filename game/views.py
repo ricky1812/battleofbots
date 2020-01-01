@@ -7,7 +7,7 @@ from .forms import UserForm
 from .models import Profile
 
 def index(request):
-	return HttpResponse("Welcome")
+	return render(request,'game/index.html',{})
 
 
 def signup(request):
@@ -42,4 +42,4 @@ def login_view(request):
 @login_required
 def logout_view(request):
 	logout(request)
-	return HttpResponseRedirect('/')
+	return render(request,'game/index.html',{})
