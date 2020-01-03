@@ -3,13 +3,15 @@
   <title>LOGIN</title>
 </head>
 <body>
+<h2>{{message}}</h2>
 <h2>Login</h2>
-<form method="post">
-  {% csrf_token %} Username: <input type="text" name="username" />
+<form method="post" action="{% url 'login' %}">
+  {% csrf_token %} 
+  Username: <input type="text" name="username" />
   <br />
   Password: <input type="password" name="password" />
   <br />
-  <button type="submit" class="btn btn-success">Sign in!</button>
+  <button type="submit" class="btn btn-success">Log In</button>
 
 </form>
 </body>
