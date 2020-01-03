@@ -3,7 +3,7 @@ from django.shortcuts import render,HttpResponse, HttpResponseRedirect, redirect
 from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.decorators import login_required
-from .forms import UserForm
+from .forms import UserForm,Weapons
 from .models import Profile
 
 def index(request):
@@ -31,7 +31,7 @@ def login_view(request):
 		if user is not None:
 			if user.is_active:
 				login(request,user)
-				return redirect('/')
+				return redirect('index2')
 			else:
 				message='Not Activated'
 		else:
@@ -43,3 +43,19 @@ def login_view(request):
 def logout_view(request):
 	logout(request)
 	return render(request,'game/index.html',{})
+
+def index2(request):
+	return render(request,'game/index2.html')
+
+def play(request):
+	if request.method == 'POST':
+		form = Weapons(request.POST)
+		if form.is_valid():
+			request.user.weapons = form.cleaned_data['weapons']  ## error as how to add checkbox inputs into textfields
+			return HttpResponse("weapons added") ##for testing
+
+	else:
+		form = Weapons()
+	args={'form': form}
+	return render(request,'game/play.html',args)
+
