@@ -1,7 +1,7 @@
 from django.shortcuts import render,HttpResponse, HttpResponseRedirect, redirect, reverse
 
 from django.contrib.auth import authenticate, login, logout
-
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm,Weapons
 from .models import Profile
@@ -15,7 +15,9 @@ def signup(request):
 		form=UserForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return redirect('/')
+			username = form.cleaned_data.get('username')
+			raw_password=form.cleaned_data.get('password1')
+			return redirect('login')
 	else:
 		form=UserForm()
 	args={'form': form}
@@ -43,7 +45,7 @@ def login_view(request):
 def logout_view(request):
 	logout(request)
 	return render(request,'game/index.html',{})
-
+@login_required
 def index2(request):
 	return render(request,'game/index2.html')
 
@@ -58,4 +60,10 @@ def play(request):
 		form = Weapons()
 	args={'form': form}
 	return render(request,'game/play.html',args)
+
+@login_required
+def play_game(request):
+	return render(request,'game/weapons.html')
+
+
 
