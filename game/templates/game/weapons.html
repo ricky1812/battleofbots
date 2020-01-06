@@ -1,0 +1,30 @@
+<html>
+<title>Battle of Bots</title>
+<head> WEAPONS SELECTUION</head>
+<body>
+	<h1>User Name is ----- {{user.username}}</h1>
+	<h5>Money Left is ---{{user.profile.money}}</h5>
+	<h1>Attacks</h1>
+	WEAPONS = (('flame_thrower','Flame Thrower'),
+    ('water_jet','Water Jet'),
+    ('sledge_hammer','Sledge Hammer'),
+    ('spinning_blades','Spinning Blades'),
+    ('machine_gun','Machine Gun'),
+    ('Flipper','Flipper'),
+	('None','None')
+	)
+	<h1>The Various Weapons are</h1>
+
+	{% for i in items %}
+	<a href="{% url 'ordering-weapons' i.id %}"><h4>{{i.title}}</h4></a><br>
+	<h5>{{i.description}}</h5><br>
+	<h5>RS {{i.cost}} </h5></body>
+
+	{% endfor %}
+
+</body>
+</html>
+
+
+
+

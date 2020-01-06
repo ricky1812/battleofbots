@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='profile',
             name='weapons',
-            field=django.contrib.postgres.fields.jsonb.JSONField(default=''),
+            field=django.contrib.postgres.fields.jsonb.JSONField(blank=True, null=True),
         ),
     ]
