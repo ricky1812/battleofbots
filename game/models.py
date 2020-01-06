@@ -15,6 +15,8 @@ class Profile(models.Model):
 	points=models.IntegerField(default=0)
 	money=models.IntegerField(default=500)
 	weapon_list=models.TextField(max_length=500, null=True)
+	defence_list=models.TextField(max_length=500, null=True)
+
 	
 	
 	def __str__(self):
@@ -48,6 +50,25 @@ class OrderedWeapons(models.Model):
 
 	def __str__(self):
 		return str(self.weapons)
+
+class Defence(models.Model):
+	title=models.CharField(max_length=100)
+	description=models.CharField(max_length=500)
+	cost=models.IntegerField(default=0)
+
+	def __str__(self):
+		return self.title
+
+
+class OrderedDefence(models.Model):
+	player=models.ForeignKey(User,on_delete=models.CASCADE)
+	defence = models.ForeignKey(Defence, on_delete=models.CASCADE, null=True)
+
+	
+
+
+	def __str__(self):
+		return str(self.defence)
 
 
 

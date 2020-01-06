@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm,Weapons
-from .models import Profile, Weapons, OrderedWeapons
+from .models import Profile, Weapons, OrderedWeapons,Defence,OrderedDefence
 
 def index(request):
 	return render(request,'game/index.html',{})
@@ -78,4 +78,27 @@ def ordered_weapons(request,key):
 	return redirect('/index2/play')
 
 
+def play2(request):
+	items=Defence.objects.all()
+	print(items)
+	user=User.objects.get(username=request.user.username)
+
+	return render(request,'game/defences.html',{'items':items, 'user':user})
+
+def ordering_defences(request,key):
+	items=Defence.objects.get(id=key)
+	print(items)
+
+	return render(request,'game/confirm2.html',{'items':items})
+
+def ordered_defences(request,key):
+	items = Defence.objects.all()
+	item=Defence.objects.get(id=key)
+	user=User.objects.get(username=request.user.username)
+	user.profile.money-=item.cost
+	user.profile.defence_list=str(user.profile.defence_list)+", "+str(item.title)
+	user.save()
+	#if request.method=="POST":
+
+	return render(request,'game/defences.html',{'items':items,'user':user})
 

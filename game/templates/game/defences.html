@@ -1,0 +1,24 @@
+<html>
+<title>Battle of Bots</title>
+<head> WEAPONS SELECTUION</head>
+<body>
+    <a href="{% url 'play' %}">MOVE TO WEAPONS</a>
+	<a href="#">MOVE TO CART</a>
+	<h1>User Name is ----- {{user.username}}</h1>
+	<h5>Money Left is ---{{user.profile.money}}</h5>
+	<h1>Defences</h1>
+	<h1>The Various Defences are</h1>
+
+	{% for i in items %}
+	<a href="{% url 'ordering-defences' i.id %}"><h4>{{i.title}}</h4></a><br>
+	<h5>{{i.description}}</h5><br>
+	<h5>RS {{i.cost}} </h5></body>
+
+	{% endfor %}
+
+</body>
+</html>
+
+
+
+
