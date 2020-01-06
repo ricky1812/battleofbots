@@ -7,20 +7,14 @@ from django.db.models.signals import post_save
 from multiselectfield import MultiSelectField
 
 
-WEAPONS = (('flame_thrower','Flame Thrower'),
-    ('water_jet','Water Jet'),
-    ('sledge_hammer','Sledge Hammer'),
-    ('spinning_blades','Spinning Blades'),
-    ('machine_gun','Machine Gun'),
-    ('Flipper','Flipper'),
-	('None','None')
-	)
+
 
 class Profile(models.Model):
 	user=models.OneToOneField(User,on_delete=models.CASCADE)
 	image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 	points=models.IntegerField(default=0)
 	money=models.IntegerField(default=500)
+	weapon_list=models.TextField(max_length=500, null=True)
 	
 	
 	def __str__(self):
@@ -48,6 +42,8 @@ class Weapons(models.Model):
 class OrderedWeapons(models.Model):
 	player=models.ForeignKey(User,on_delete=models.CASCADE)
 	weapons = models.ForeignKey(Weapons, on_delete=models.CASCADE, null=True)
+
+	
 
 
 	def __str__(self):

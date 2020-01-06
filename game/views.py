@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm,Weapons
-from .models import Profile
+from .models import Profile, Weapons, OrderedWeapons
 
 def index(request):
 	return render(request,'game/index.html',{})
@@ -49,21 +49,33 @@ def logout_view(request):
 def index2(request):
 	return render(request,'game/index2.html')
 
-def play(request):
-	if request.method == 'POST':
-		form = Weapons(request.POST)
-		if form.is_valid():
-			request.user.weapons = form.cleaned_data['weapons']  ## error as how to add checkbox inputs into textfields
-			return HttpResponse("weapons added") ##for testing
 
-	else:
-		form = Weapons()
-	args={'form': form}
-	return render(request,'game/play.html',args)
 
 @login_required
-def play_game(request):
-	return render(request,'game/weapons.html')
+def play(request):
+	items=Weapons.objects.all()
+	print(items)
+	user=User.objects.get(username=request.user.username)
+
+	return render(request,'game/weapons.html',{'items':items, 'user':user})
+
+def ordering_weapons(request,key):
+	items=Weapons.objects.get(id=key)
+	print(items)
+
+	return render(request,'game/confirm.html',{'items':items})
+
+def ordered_weapons(request,key):
+	items=Weapons.objects.get(id=key)
+	user=User.objects.get(username=request.user.username)
+	user.profile.points+=items.points
+	user.profile.money-=items.cost
+	user.profile.weapon_list=str(user.profile.weapon_list)+", "+str(items.title)
+	user.save()
+	#if request.method=="POST":
+
+	
+	return redirect('/index2/play')
 
 
 
