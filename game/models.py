@@ -42,7 +42,7 @@ class Weapons(models.Model):
 
 
 class OrderedWeapons(models.Model):
-	player=models.ForeignKey(User,on_delete=models.CASCADE)
+	player=models.ForeignKey(User,on_delete=models.CASCADE, null=True)
 	weapons = models.ForeignKey(Weapons, on_delete=models.CASCADE, null=True)
 
 	
