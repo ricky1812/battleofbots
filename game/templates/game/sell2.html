@@ -1,0 +1,12 @@
+<html>
+<title>BattleofBots</title>
+<body>
+
+	Items to SELL <br>
+	{% for i in items %}
+	titke<br>
+	<a href="{% url 'confirm-del-2' i.id %}">{{i.title}}<br></a>
+	{{i.cost}}<br>
+	{% endfor %}
+</body>
+</html>
