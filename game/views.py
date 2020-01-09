@@ -147,7 +147,7 @@ def ordered_defences(request,key):
 	user.profile.money-=items.cost
 	user.profile.weapon_list=str(user.profile.weapon_list)+", "+str(items.title)
 	user.save()
-	return redirect('/index2/play/play2')       ## redirect to weapons home page
+	return redirect('/index2/play')       ## redirect to weapons home page
 
 	
 
@@ -178,6 +178,7 @@ def sell_defence(request,key):
 
 def match(request):
 	players = list(Profile.objects.all())
+	#players = list(players)
 	player1 = User.objects.get(username=request.user)
 	player1 = Profile.objects.get(user = player1)
 	player1_rank = players.index(player1)
@@ -188,47 +189,56 @@ def match(request):
 		player2_rank = player1_rank - 1
 	player2 = players[player2_rank]
 
+
 	weapons1=OrderedWeapons.objects.filter(player=request.user)
 	weapons2=OrderedWeapons.objects.filter(player=player2.user)
 	defences1=OrderedDefence.objects.filter(player=request.user)
 	defences2=OrderedDefence.objects.filter(player=player2.user)
-	
-	for i in defences2:
-		if(i.defence.title == 'Fire Ressistant'):
-			for j in weapons1:
-				if(j.weapons.title == 'Flame Thrower'):
-					player1.points -= 25
-		elif(i.defence.title == 'Water Resistant'):
-			for j in weapons1:
-				if(j.weapons.title == 'Water Jet'):
-					player1.points -= 25
-		elif(i.defence.title == 'Bulletproof'):
-			for j in weapons1:
-				if(j.weapons.title == 'Machine Gun'):
-					player1.points -= 30
-				player1.save()
 
+	for i in defences2:
+		if(i.defence.title == 'Neutralizer'):
+			for j in weapons1:
+				j.points /= 2
+				j.save()
+		elif (i.defence.title == 'Fire Resistant'):
+			for j in weapons1:
+				if(j.title == 'Flame Thrower'):
+					j.points /= 2
+					j.save()
+		elif(i.defence.title == 'Water Resistant'):
+			for j in weapons1:
+				if(j.title == 'Water Jet'):
+					j.points /= 2
+					j.save()
+	sum1 = 0
+	for i in weapons1:
+		sum1 += i.points
+	player1.points = sum1
+	player1.save()
 	for i in defences1:
-		if(i.defence.title == 'Fire Ressistant'):
+		if(i.defence.title == 'Neutralizer'):
+			for j in weapons1:
+				j.points /= 2
+				j.save()
+		elif (i.defence.title == 'Fire Resistant'):
 			for j in weapons2:
-				if(j.weapons.title == 'Flame Thrower'):
-					player2.points -= 25
+				if(j.title == 'Flame Thrower'):
+					j.points /= 2
+					j.save()
 		elif(i.defence.title == 'Water Resistant'):
 			for j in weapons2:
-				if(j.weapons.title == 'Water Jet'):
-					player2.points -= 25
-		elif(i.defence.title == 'Bulletproof'):
-			for j in weapons2:
-				if(j.weapons.title == 'Machine Gun'):
-					player2.points -= 30
-			player2.save()
+				if(j.title == 'Water Jet'):
+					j.points /= 2
+					j.save()
+	sum1 = 0
+	for i in weapons2:
+		sum1 += i.points
+	player2.points = sum1
+	player2.save()
 	
 	if(player1.points > player2.points):
 		winner = player1
-		loser = player2
 	elif(player2.points > player1.points):
 		winner = player2
-		loser = player2
-
-	return render(request,'game/game.html',{'winner':winner,'loser':loser})
+	return render(request,'game/game.html',{'winner':winner})
 	 

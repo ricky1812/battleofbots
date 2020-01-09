@@ -16,7 +16,7 @@ urlpatterns=[
 				##defence
 				path('index2/play/play2/',views.play2,name = 'play2'),
 				#path('index2/play/play2/<key>',views.ordering_defences,name='ordering-defences'),
-				#path('index2/play/play2/<key>/confirm2',views.ordered_defences,name='confirm-add-2'),
+				path('index2/play/play2/<key>/confirm2',views.ordered_defences,name='confirm-add-2'),
 				#path('index2/play/play2/sell',views.sell_defence_list,name = 'sell-defence'),   ##error
 				#path('index2/play/play2/<key>/delete',views.sell_defence,name='confirm-del-2'),
 
