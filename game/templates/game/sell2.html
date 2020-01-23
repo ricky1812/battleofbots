@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    #services{
+        height: 250%;
+    }
+</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <title>BATTLEBOT</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="{% static 'vendor/fontawesome-free/css/all.min.css" rel="stylesheet' %}" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href="{% static 'vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet' %}">
+
+  <!-- Custom CSS -->
+  <link href="{% static 'css/stylish-portfolio.min.css' %}" rel="stylesheet">
+
+</head>
+<body>
+<!-- Services -->
+  <section class="content-section bg-primary text-white text-center" id="services">
+  <a class="menu-toggle rounded" href="#">
+    <i class="fa fa-bars"></i>
+  </a>
+   <nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a class="js-scroll-trigger" href="{% url 'index' %}">Logout</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="{% url 'index2' %}">Home</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="">Rules and Regulations</a>
+      </li>
+        <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="{% url 'play' %}">Attack</a>
+      </li>
+        <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="{% url 'play2' %}">Defence</a>
+      </li>
+
+    </ul>
+  </nav>
+    <div class="container my-3">
+      <div class="content-section-heading">
+        <h3 class="text-secondary mb-0">Money left is {{user.profile.money}}</h3>
+        <h2 class="mb-5">Welcome {{user.username}}</h2>
+          <h1 style="color: #95999c">YOUR DEFNECES</h1>
+      </div>
+
+	 <div class="row my-5">
+        <div class="col-md-12">
+          <span class="service-icon rounded-circle mx-auto mb-3" style="color: yellowgreen">
+            <i class="fa fa-remove"></i>
+          </span>
+{% for i in items %}
+	<a href="{% url 'confirm-del-2' i.id %}">
+        <h4>
+                  <strong>{{i.title}}</strong><br>
+              </h4></a>
+	<i>{{i.cost}}</i><br>
+	 </div>
+      </div>
+        {% endfor %}
+
+    </div>
+  </section>
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="{% static 'js/stylish-portfolio.min.js' %}"></script>
+
+</body>
+</html>

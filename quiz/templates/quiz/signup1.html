@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	{% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>New Age - Start Bootstrap Theme</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'quiz/vendor2/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="{% static 'quiz/vendor2/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'quiz/vendor2/simple-line-icons/css/simple-line-icons.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+  <!-- Plugin CSS -->
+  <link rel="stylesheet" href="{% static 'quiz/device-mockups/device-mockups.min.css' %}">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'quiz/css5/new-age.min.css' %}" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'quiz/vendor3/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'quiz/vendor3/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'quiz/vendor3/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'quiz/vendor3/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'quiz/vendor3/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'quiz/vendor3/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'quiz/css6/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'quiz/css6/main.css' %}">
+
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Society of Automotive Engineers</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link js-scroll-trigger" href="{% url 'index' %}">Home</a>
+					</li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#download">Rules</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/signup">Signup</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/login">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+	<header class="masthead">
+		<div class="container h-100">
+      <div class="row h-100">
+        <div class="col-lg-7 my-auto">
+<br />
+<br />
+		<div class="limiter">
+
+				<div class="wrap-login100 p-t-30 p-b-50">
+
+					<span class="login100-form-title p-b-41">
+						Signup Here!
+					</span>
+					<form class="login100-form validate-form p-b-33 p-t-5">
+
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+							<input class="input100" type="text" name="username" placeholder="User name">
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+							<input class="input100" type="text" name="username" placeholder="First name">
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+							<input class="input100" type="text" name="username" placeholder="Last name">
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+							<input class="input100" type="text" name="username" placeholder="Email">
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate="Enter password">
+							<input class="input100" type="password" name="pass" placeholder="Password">
+							<span class="focus-input100" data-placeholder="&#xe80f;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate="Enter password">
+							<input class="input100" type="password" name="pass" placeholder="Confirm Password">
+							<span class="focus-input100" data-placeholder="&#xe80f;"></span>
+						</div>
+
+						<div class="container-login100-form-btn m-t-32">
+							<button class="login100-form-btn">
+								Signup Now!
+							</button>
+						</div>
+
+					</form>
+				</div>
+			</div>
+			</div>
+				<div class="col-lg-5 my-auto">
+					<div class="device-container">
+						<div class="device-mockup iphone6_plus portrait white">
+
+									<!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
+									<h1>Signup here</h1>
+								</div>
+								<div class="button">
+									<!-- You can hook the "home button" to some JavaScript events or just remove it -->
+
+						</div>
+					</div>
+				</div>
+
+		</div>
+	</div>
+
+	</header>
+	<div id="dropDownSelect1"></div>
+
+	<!--===============================================================================================-->
+	<script src="{% static 'quiz/vendor3/jquery/jquery-3.2.1.min.js' %}"></script>
+	<!--===============================================================================================-->
+	<script src="{% static 'quiz/vendor3/animsition/js/animsition.min.js' %}"></script>
+	<!--===============================================================================================-->
+	<script src="{% static 'quiz/vendor3/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'quiz/vendor3/bootstrap/js/bootstrap.min.js' %}"></script>
+	<!--===============================================================================================-->
+	<script src="{% static 'quiz/vendor3/select2/select2.min.js' %}"></script>
+	<!--===============================================================================================-->
+	<script src="{% static 'quiz/vendor3/daterangepicker/moment.min.js' %}"></script>
+	<script src="{% static 'quiz/vendor3/daterangepicker/daterangepicker.js' %}"></script>
+	<!--===============================================================================================-->
+	<script src="{% static 'quiz/vendor3/countdowntime/countdowntime.js' %}"></script>
+	<!--===============================================================================================-->
+	<script src="{% static 'quiz/js3/main.js' %}"></script>
+
+	</body>
+	</html>

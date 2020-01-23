@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	{% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>QFIESTA</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'quiz/vendor2/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+	  <!-- Custom fonts for this template -->
+  <link href="{% static 'quiz/vendor2/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'quiz/vendor2/simple-line-icons/css/simple-line-icons.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+  <!-- Plugin CSS -->
+  <link rel="stylesheet" href="{% static 'quiz/device-mockups/device-mockups.min.css' %}">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'quiz/css5/new-age.min.css' %}" rel="stylesheet">
+	<style>
+    .navbar-shrink{
+      max-height: 90px !important;
+    }
+      @media only screen and (max-width: 576px) {
+        #arihant {
+            height:20vw;
+            width: 20vw;
+        }
+      }
+      @media only screen and (min-width: 576px) {
+        #arihant {
+            height:6vw;
+            width: 6vw;
+        }
+      }
+      @media only screen and (max-width: 576px) {
+        #lemongrass {
+            height:15vw;
+            width: 50vw;
+        }
+      }
+      @media only screen and (min-width: 576px) {
+        #lemongrass {
+            height:6vw;
+            width: 16vw;
+        }
+      }
+      @media only screen and (min-width: 576px) {
+        #qfiesta {
+            display:none;
+        }
+      }
+      @media only screen and (max-width: 576px) {
+        #logo {
+            height:5%;
+            width: 20%;
+        }
+      }
+      @media only screen and (min-width: 576px) {
+        #logo {
+            height:3%;
+            width: 10%;
+        }
+      }
+	@font-face {
+font-family: 'Georgia, serif';
+src: url('Georgia.eot'); /* IE9 Compat Modes */
+src: url('Georgia.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		 url('Georgia.woff2') format('woff2'), /* Super Modern Browsers */
+		 url('Georgia.woff') format('woff'), /* Pretty Modern Browsers */
+		 url('Georgia.ttf')  format('truetype'), /* Safari, Android, iOS */
+		 url('Georgia.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+	</style>
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"> 
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+			<img id = "logo" src="{% static 'quiz/saelogo.png' %}" style="width: auto; height: 100px;" />
+	    		<h1 class="mb-1" id="qfiesta" style="font-size: 1em;font-weight:bold; font-family: 'Georgia, serif';margin-left:40px;"><br />QFIESTA</h1>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top"></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link js-scroll-trigger" style="font-size: 1em;" href="{% url 'index' %}">Home</a>
+					</li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger"  style="font-size: 1em;" href="#rules">Rules</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger"  style="font-size: 1em;" href="/login">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-lg-7 my-auto">
+          <div class="header-content mx-auto">
+            <h1 class="mb-5" style="font-size: 4em; font-family: 'Georgia, serif';"><br />QFIESTA</h1><br>
+            <div class = "container" style="padding:0px">
+              <div class = "row">
+                  <div class = "col-md-12">
+                      <h4 style="font-family: 'Georgia, serif';">Sponsored By </h4>
+                      
+                  </div>
+                  <div class = "col-md-3 col-sm-12 " style="margin-top:2vw;">
+                     <img src="{% static 'quiz/arihant.jpg' %}" id="arihant"/> 
+                      
+                  </div>
+                  <div class = "col-md-9 col-sm-12" style="margin-top:2vw">
+                     <img src="{% static 'quiz/lemongrass.jpg' %}" id="lemongrass"/> 
+                      
+                  </div>
+              </div>
+              
+
+            </div>
+
+          </div>
+        </div>
+        <div class="col-lg-5 my-auto">
+          <div class="device-container">
+            <div class="device-mockup iphone6_plus portrait white">
+              <div class="device">
+                <div class="screen">
+                  <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
+            <!--      <img src="img/demo-screen-1.jpg" class="img-fluid" alt=""> -->
+						<h3 style="font-family: 'URW Chancery L, cursive';">	<i>We await the crowning of the next tech wizards. A haven for those with the technical chutzpah to display your geekiness. A Battle Royale, slay your opponents and emerge the winner, in this quintessential clash of QFIESTA!
+						</i></h3>
+								</div>
+                <div class="button">
+                  <!-- You can hook the "home button" to some JavaScript events or just remove it -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+	<section class="download bg-primary " id="rules">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 mx-auto">
+					<h2 class="section-heading text-center" style="font-size: 4em; font-family: 'Georgia, serif';">Know the Rules!</h2>
+					<p style="font-family: 'New Century Schoolbook, TeX Gyre Schola, serif'; font-size: 1.5em;">1. The event will have 50 questions.<br />2. Solving a question is necessary in order to proceed to the next one.
+<br />3. +10 will be awarded for each correct answer. <br />4. No negative marking for wrong answers. <br /><b> 5. Answers to be in lowercase with no spaces and special characters. Numbers should be in digits.</b> <br />6. Hints for a question will be provided in the club's facebook page if required.
+				</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<script src="{% static 'quiz/vendor2/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'quiz/vendor2/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="{% static 'quiz/vendor2/jquery-easing/jquery.easing.min.js' %}"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="{% static 'quiz/js2/new-age.min.js' %}"></script>
+
+</body>
+</html>

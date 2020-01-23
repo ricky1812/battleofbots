@@ -1,0 +1,11 @@
+{% if player.is_playing == True%}
+
+    <h1>YOU WON</h1>
+    <a href="{% url 'match_test_2'%}">Go to round 4</a>
+
+
+{% else %}
+
+    <h1>YOU LOST</h1>
+
+{% endif %}

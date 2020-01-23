@@ -1,0 +1,16 @@
+<html>
+<title>Battleofbots</title>
+<body>
+	<form method="POST">
+		{% csrf_token %}
+	<h1> do u want to buy this defence???</h1><br>
+
+	{{items.title}}
+	<br>
+
+	<a class="btn btn-outline-danger" href="{% url 'confirm-add-2' items.id %}">Buy</button></a>
+
+</form>
+
+</body>
+</html>
