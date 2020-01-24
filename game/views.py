@@ -372,11 +372,11 @@ def match2(request):
 			loser = player1
 			player1.is_playing = False
 			player1.save()
-	winner.curr_round += 1
-	p = Profile3(user = winner.user,image = winner.image,points = winner.points , money = winner.money,weapon_list = winner.weapon_list,defence_list = winner.defence_list,is_playing = winner.is_playing,curr_round = winner.curr_round)
-	p.save()
+		winner.curr_round += 1
+		p = Profile3(user = winner.user,image = winner.image,points = winner.points , money = winner.money,weapon_list = winner.weapon_list,defence_list = winner.defence_list,is_playing = winner.is_playing,curr_round = winner.curr_round)
+		p.save()
 
-	return render(request,'game/game2.html',{'winner':winner,'loser':loser})
+		return render(request,'game/game2.html',{'winner':winner,'loser':loser})
 def match3(request):
 		players = list(Profile3.objects.all())
 		player1 = User.objects.get(username=request.user)
