@@ -10,11 +10,11 @@
 
   <title>QFIESTA</title>
 
-  <!-- Bootstrap core CSS -->
+  <!-- Bootstrap core CSS --->
   <link href="{% static 'quiz/vendor2/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 	  <!-- Custom fonts for this template -->
   <link href="{% static 'quiz/vendor2/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'quiz/vendor2/simple-line-icons/css/simple-line-icons.css' %}">
+  <!---<link rel="stylesheet" href="{% static 'quiz/vendor2/simple-line-icons/css/simple-line-icons.css' %}">-->
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
@@ -28,47 +28,7 @@
     .navbar-shrink{
       max-height: 90px !important;
     }
-      @media only screen and (max-width: 576px) {
-        #arihant {
-            height:20vw;
-            width: 20vw;
-        }
-      }
-      @media only screen and (min-width: 576px) {
-        #arihant {
-            height:6vw;
-            width: 6vw;
-        }
-      }
-      @media only screen and (max-width: 576px) {
-        #lemongrass {
-            height:15vw;
-            width: 50vw;
-        }
-      }
-      @media only screen and (min-width: 576px) {
-        #lemongrass {
-            height:6vw;
-            width: 16vw;
-        }
-      }
-      @media only screen and (min-width: 576px) {
-        #qfiesta {
-            display:none;
-        }
-      }
-      @media only screen and (max-width: 576px) {
-        #logo {
-            height:5%;
-            width: 20%;
-        }
-      }
-      @media only screen and (min-width: 576px) {
-        #logo {
-            height:3%;
-            width: 10%;
-        }
-      }
+      
 	@font-face {
 font-family: 'Georgia, serif';
 src: url('Georgia.eot'); /* IE9 Compat Modes */
@@ -119,25 +79,6 @@ src: url('Georgia.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
         <div class="col-lg-7 my-auto">
           <div class="header-content mx-auto">
             <h1 class="mb-5" style="font-size: 4em; font-family: 'Georgia, serif';"><br />QFIESTA</h1><br>
-            <div class = "container" style="padding:0px">
-              <div class = "row">
-                  <div class = "col-md-12">
-                      <h4 style="font-family: 'Georgia, serif';">Sponsored By </h4>
-                      
-                  </div>
-                  <div class = "col-md-3 col-sm-12 " style="margin-top:2vw;">
-                     <img src="{% static 'quiz/arihant.jpg' %}" id="arihant"/> 
-                      
-                  </div>
-                  <div class = "col-md-9 col-sm-12" style="margin-top:2vw">
-                     <img src="{% static 'quiz/lemongrass.jpg' %}" id="lemongrass"/> 
-                      
-                  </div>
-              </div>
-              
-
-            </div>
-
           </div>
         </div>
         <div class="col-lg-5 my-auto">
@@ -145,10 +86,8 @@ src: url('Georgia.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
             <div class="device-mockup iphone6_plus portrait white">
               <div class="device">
                 <div class="screen">
-                  <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-            <!--      <img src="img/demo-screen-1.jpg" class="img-fluid" alt=""> -->
-						<h3 style="font-family: 'URW Chancery L, cursive';">	<i>We await the crowning of the next tech wizards. A haven for those with the technical chutzpah to display your geekiness. A Battle Royale, slay your opponents and emerge the winner, in this quintessential clash of QFIESTA!
-						</i></h3>
+                  <h3 style="font-family: 'URW Chancery L, cursive';">	<i>We await the crowning of the next tech wizards. A haven for those with the technical chutzpah to display your geekiness. A Battle Royale, slay your opponents and emerge the winner, in this quintessential clash of QFIESTA!
+						    </i></h3>
 								</div>
                 <div class="button">
                   <!-- You can hook the "home button" to some JavaScript events or just remove it -->

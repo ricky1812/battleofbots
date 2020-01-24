@@ -219,7 +219,7 @@ def match(request):
 			for j in weapons1:
 				if(j.weapons.title == 'Machine Gun'):
 					player1.points -= 30
-				player1.save()
+	player1.save()
 
 	for i in defences1:
 		if(i.defence.title == 'Fire Ressistant'):
@@ -234,7 +234,7 @@ def match(request):
 			for j in weapons2:
 				if(j.weapons.title == 'Machine Gun'):
 					player2.points -= 30
-			player2.save()
+	player2.save()
 
 	if(player1.points > player2.points):
 		winner = player1
@@ -246,8 +246,7 @@ def match(request):
 		loser = player1
 		player1.is_playing = False
 		player1.save()
-	winner.curr_round += 1
-	p = Profile1(user = winner.user,image = winner.image,points = winner.points , money = winner.money,weapon_list = winner.weapon_list,defence_list = winner.defence_list,is_playing = winner.is_playing,curr_round = winner.curr_round)
+	p = Profile1(user = winner.user,image = winner.image,points = winner.points , money = winner.money,weapon_list = winner.weapon_list,defence_list = winner.defence_list,is_playing = winner.is_playing,curr_round = winner.curr_round+1)
 	p.save()
 
 	return render(request,'game/game.html',{'winner':winner,'loser':loser})
@@ -282,7 +281,7 @@ def match1(request):
 			for j in weapons1:
 				if(j.weapons.title == 'Machine Gun'):
 					player1.points -= 30
-				player1.save()
+	player1.save()
 
 	for i in defences1:
 		if(i.defence.title == 'Fire Ressistant'):
@@ -297,7 +296,7 @@ def match1(request):
 			for j in weapons2:
 				if(j.weapons.title == 'Machine Gun'):
 					player2.points -= 30
-			player2.save()
+	player2.save()
 
 	if(player1.points > player2.points):
 		winner = player1
@@ -310,7 +309,7 @@ def match1(request):
 		player1.is_playing = False
 		player1.save()
 	winner.curr_round += 1
-	p = Profile2(user = winner.user,image = winner.image,points = winner.points , money = winner.money,weapon_list = winner.weapon_list,defence_list = winner.defence_list,is_playing = winner.is_playing,curr_round = winner.curr_round)
+	p = Profile2(user = winner.user,image = winner.image,points = winner.points , money = winner.money,weapon_list = winner.weapon_list,defence_list = winner.defence_list,is_playing = winner.is_playing,curr_round = winner.curr_round+1)
 	p.save()
 
 	return render(request,'game/game1.html',{'winner':winner,'loser':loser})
@@ -345,7 +344,7 @@ def match2(request):
 				for j in weapons1:
 					if(j.weapons.title == 'Machine Gun'):
 						player1.points -= 30
-					player1.save()
+		player1.save()
 
 		for i in defences1:
 			if(i.defence.title == 'Fire Ressistant'):
@@ -360,7 +359,7 @@ def match2(request):
 				for j in weapons2:
 					if(j.weapons.title == 'Machine Gun'):
 						player2.points -= 30
-				player2.save()
+		player2.save()
 
 		if(player1.points > player2.points):
 			winner = player1
@@ -373,7 +372,7 @@ def match2(request):
 			player1.is_playing = False
 			player1.save()
 		winner.curr_round += 1
-		p = Profile3(user = winner.user,image = winner.image,points = winner.points , money = winner.money,weapon_list = winner.weapon_list,defence_list = winner.defence_list,is_playing = winner.is_playing,curr_round = winner.curr_round)
+		p = Profile3(user = winner.user,image = winner.image,points = winner.points , money = winner.money,weapon_list = winner.weapon_list,defence_list = winner.defence_list,is_playing = winner.is_playing,curr_round = winner.curr_round+1)
 		p.save()
 
 		return render(request,'game/game2.html',{'winner':winner,'loser':loser})
@@ -407,7 +406,7 @@ def match3(request):
 				for j in weapons1:
 					if(j.weapons.title == 'Machine Gun'):
 						player1.points -= 30
-					player1.save()
+		player1.save()
 
 		for i in defences1:
 			if(i.defence.title == 'Fire Ressistant'):
@@ -422,7 +421,7 @@ def match3(request):
 				for j in weapons2:
 					if(j.weapons.title == 'Machine Gun'):
 						player2.points -= 30
-				player2.save()
+		player2.save()
 
 		if(player1.points > player2.points):
 			winner = player1
@@ -435,7 +434,7 @@ def match3(request):
 			player1.is_playing = False
 			player1.save()
 		winner.curr_round += 1
-		p = Profile4(user = winner.user,image = winner.image,points = winner.points , money = winner.money,weapon_list = winner.weapon_list,defence_list = winner.defence_list,is_playing = winner.is_playing,curr_round = winner.curr_round)
+		p = Profile4(user = winner.user,image = winner.image,points = winner.points , money = winner.money,weapon_list = winner.weapon_list,defence_list = winner.defence_list,is_playing = winner.is_playing,curr_round = winner.curr_round+1)
 		p.save()
 
 		return render(request,'game/game3.html',{'winner':winner,'loser':loser})
