@@ -98,7 +98,7 @@ def get_question(request):
 			#context={'message':message}
 			user.profile.score-=5
 			return redirect('quiz2')
-	if user.profile.curr_round<=4:
+	if user.profile.curr_round<=5:
 
 		return render(request,'quiz/quizpage.html',{'round':round})
 	else:
