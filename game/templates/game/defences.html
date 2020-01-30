@@ -28,8 +28,8 @@
       }
 
       .robot svg {
-        position: absolute;
-        top: 90%;
+        position: fixed;
+        top: 60%;
         left: 50%;
         display: block;
         margin: 0 auto;
@@ -384,7 +384,7 @@
       <b style="color='white';">  Description: </b> {{i.description}}
           </i><br>
             <i class="text-primary" style="font-size:2em;"> Price: {{i.cost}}</i><br>
-    <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'ordering-defences' i.id %}">BUY THIS DEFENCE</a>
+     <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'confirm-add-2' i.id %}">BUY THIS DEFENCE</a>
 
             <br />
             <br />
@@ -397,6 +397,7 @@
              </i><br>
           <i class="text-primary" style="font-size:2em;"> Price:{{i.cost}}</i><br>
           <a class="btn btn-primary btn-xl js-scroll-trigger disabled" >BUY THIS DEFENCE</a>
+          <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'confirm-del-2' i.id %}">SELL IT</a>
           <br />
           <br />
               {% endif %}

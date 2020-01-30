@@ -113,7 +113,8 @@ class Profile3(models.Model):
 	defence_list=models.TextField(max_length=500, null=True)
 	is_playing = models.BooleanField(default=True)
 	curr_round=models.IntegerField(default=1)
-	
+
+
 	class Meta:
 		ordering = ('-points',)
 	
