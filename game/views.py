@@ -50,7 +50,9 @@ def logout_view(request):
 	return render(request,'game/index.html',{})
 @login_required
 def index2(request):
-	return render(request,'game/index2.html')
+	user = User.objects.get(username = request.user)
+	player = Profile.objects.get(user = user)
+	return render(request,'game/index2.html',{'player':player})
 
 
 
