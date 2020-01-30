@@ -247,7 +247,7 @@ def match(request):
 		player1.is_playing = False
 		player1.save()
 	winner.curr_round += 1
-	p = Profile1(user = winner.user,image = winner.image,points = winner.points , money = winner.money,weapon_list = winner.weapon_list,defence_list = winner.defence_list,is_playing = winner.is_playing,curr_round = winner.curr_round)
+	p = Profile1(user = winner.user,image = winner.image,points = winner.points , money = winner.money,weapon_list = winner.weapon_list,defence_list = winner.defence_list,is_playing = winner.is_playing)
 	p.save()
 
 	return render(request,'game/game.html',{'winner':winner,'loser':loser})

@@ -77,7 +77,7 @@ class Profile1(models.Model):
 	weapon_list=models.TextField(max_length=500, null=True)
 	defence_list=models.TextField(max_length=500, null=True)
 	is_playing = models.BooleanField(default=True)
-	curr_round=models.IntegerField(default=1)
+	
 
 
 	class Meta:
@@ -95,7 +95,7 @@ class Profile2(models.Model):
 	weapon_list=models.TextField(max_length=500, null=True)
 	defence_list=models.TextField(max_length=500, null=True)
 	is_playing = models.BooleanField(default=True)
-	curr_round=models.IntegerField(default=1)
+	
 
 
 	class Meta:
@@ -112,7 +112,7 @@ class Profile3(models.Model):
 	weapon_list=models.TextField(max_length=500, null=True)
 	defence_list=models.TextField(max_length=500, null=True)
 	is_playing = models.BooleanField(default=True)
-	curr_round=models.IntegerField(default=1)
+	
 
 
 	class Meta:
@@ -129,7 +129,7 @@ class Profile4(models.Model):
 	weapon_list=models.TextField(max_length=500, null=True)
 	defence_list=models.TextField(max_length=500, null=True)
 	is_playing = models.BooleanField(default=True)
-	curr_round=models.IntegerField(default=1)
+	
 
 	class Meta:
 		ordering = ('-points',)
