@@ -205,6 +205,39 @@
 
 </head>
 <body>
+	<nav>
+		<ul class="sidebar-nav">
+		  <li class="sidebar-brand">
+			<a class="js-scroll-trigger" >Budget left: {{user.profile.money}}</a>
+			  <p style=" ">Time left:</p>
+		  </li>
+	  
+	  
+		</ul>
+	</nav>
+	<nav id="sidebar-wrapper">
+		<ul class="sidebar-nav">
+		  <li class="sidebar-brand">
+			<a class="js-scroll-trigger" >Welcome {{user.username}}</a>
+		  </li>
+		  <li class="sidebar-nav-item">
+			<a class="js-scroll-trigger" href="{% url 'index' %}">Logout</a>
+		  </li>
+		  <li class="sidebar-nav-item">
+			<a class="js-scroll-trigger" href="{% url 'index2' %}">Home</a>
+		  </li>
+		  <li class="sidebar-nav-item">
+			<a class="js-scroll-trigger" href="">Rules and Regulations</a>
+		  </li>
+			<li class="sidebar-nav-item">
+			<a class="js-scroll-trigger" href="{% url 'play2' %}">Defence</a>
+		  </li>
+			<li class="sidebar-nav-item">
+			<a class="js-scroll-trigger" href="{% url 'sell-weapons' %}">Sell Weapons</a>
+		  </li>
+	
+		</ul>
+	  </nav>
 
 
 <!-- Services -->
