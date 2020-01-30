@@ -349,17 +349,21 @@
         <a class="js-scroll-trigger" href="{% url 'index' %}">Logout</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="{% url 'index2' %}">Home</a>
+        <a class="js-scroll-trigger" href="{% url 'b_index2' %}">Home</a>
       </li>
       <li class="sidebar-nav-item">
         <a class="js-scroll-trigger" href="">Rules and Regulations</a>
       </li>
         <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="{% url 'play' %}">Attack</a>
+        <a class="js-scroll-trigger" href="{% url 'play' %}">Weapons</a>
       </li>
         <li class="sidebar-nav-item">
         <a class="js-scroll-trigger" href="{% url 'play2' %}">Defence</a>
       </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="{% url 'sell-weapons' %}">Sell Weapons</a>
+      </li>
+
 
     </ul>
   </nav>
@@ -382,7 +386,7 @@
         <b style="color='white';">  Description: </b>   {{i.description}}
            </i><br>
         <i class="text-primary" style="font-size:2em;"> Price:{{i.cost}}</i><br>
-        <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'confirm-del' i.id %}">SELL THIS DEFENCE</a>
+        <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'confirm-del-2' i.id %}">SELL THIS DEFENCE</a>
         <br />
         <br />
 	 </div>
