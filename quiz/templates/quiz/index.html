@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
   <title>BATTLEBOTS</title>
 
@@ -18,11 +18,97 @@
 
   <!-- Custom Fonts -->
   <link href="{% static 'vendor/fontawesome-free/css/all.min.css" rel="stylesheet' %}" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+    rel="stylesheet" type="text/css">
   <link href="{% static 'vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet' %}">
 
   <!-- Custom CSS -->
   <link href="{% static 'css/stylish-portfolio.min.css' %}" rel="stylesheet">
+  <style>
+    .anim1 {
+      min-height: 100%;
+      background: #f6fafd;
+      /* center the svg in the viewport */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* animate bb-8 to rotate and translate horizontally
+! the group makes it possible to transform the element from the bottom center
+*/
+    .bb8-base {
+      animation: dash 0.8s infinite alternate cubic-bezier(0.645, 0.045, 0.55, 1);
+    }
+
+    @keyframes dash {
+      to {
+        transform: translate(50px) rotate(-20deg);
+        /* starting values 0 translation -40 rotation */
+      }
+    }
+
+    /* animate the body of bb-8 to rotate
+! the rotation occurs from the center of the body
+*/
+    .bb8-center {
+      animation: rotate 0.8s infinite linear;
+    }
+
+    @keyframes rotate {
+      to {
+        transform: rotate(-360deg);
+      }
+    }
+
+    /* animate the ground to translate horizontally
+! the translation continuously occurs from side to side
+*/
+    .ground {
+      animation: translate 0.8s -0.2s infinite linear;
+    }
+
+    @keyframes translate {
+      to {
+        transform: translateX(100%);
+      }
+    }
+
+    /* animate the dashes and particles to translate horizontally
+double the duration, but same velocity to show the elements only as the droid leans left 
+*/
+    .dash,
+    .particle {
+      animation: translateDashesParticles 1.6s infinite linear;
+    }
+
+    @keyframes translateDashesParticles {
+
+      50%,
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    /* animate the reflection on the droid's lens */
+    .reflection {
+      animation: translateReflection 0.8s infinite linear;
+    }
+
+    @keyframes translateReflection {
+
+      0%,
+      25% {
+        transform: translateX(-20px);
+      }
+
+      75%,
+      100% {
+        transform: translateX(20px);
+      }
+    }
+  </style>
+
 
 </head>
 
@@ -74,7 +160,7 @@
   </section>
 
   <!-- Services -->
-<!--
+  <!--
   <section class="content-section bg-primary text-white text-center" id="services">
     <div class="container">
       <div class="content-section-heading">
@@ -167,7 +253,7 @@
     </div>
   </section>
 -->
-   <!-- Scroll to Top Button-->
+  <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
     <i class="fa fa-angle-up"></i>
   </a>
