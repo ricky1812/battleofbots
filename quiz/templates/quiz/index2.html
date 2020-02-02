@@ -75,7 +75,7 @@
     }
 
     /* animate the dashes and particles to translate horizontally
-double the duration, but same velocity to show the elements only as the droid leans left 
+double the duration, but same velocity to show the elements only as the droid leans left
 */
     .dash,
     .particle {
@@ -119,7 +119,7 @@ double the duration, but same velocity to show the elements only as the droid le
   <nav id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li class="sidebar-brand">
-        <a class="js-scroll-trigger" href="/signout">Logout</a>
+        <a class="js-scroll-trigger" href="{% url 'signout' %}">Logout</a>
       </li>
       <li class="sidebar-nav-item">
         <a class="js-scroll-trigger" href="{%url 'index2' %}">Home</a>
@@ -128,7 +128,7 @@ double the duration, but same velocity to show the elements only as the droid le
         <a class="js-scroll-trigger" href="#about">Rules and Regulations</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="/leaderboard">Leaderboard</a>
+        <a class="js-scroll-trigger" href="{% url 'leaderboard'%}">Leaderboard</a>
       </li>
 
 
@@ -140,9 +140,9 @@ double the duration, but same velocity to show the elements only as the droid le
     <div class="container text-center my-auto">
       <h1 class="mb-1">BATTLEBOTS</h1>
       <h3 class="mb-5">
-        <em>Get involved in bot fights</em>
+        <em>Fight with your fantasy bot!</em>
       </h3>
-      <a class="btn btn-primary btn-xl js-scroll-trigger" href="/quiz/get_question">Play Quiz</a>
+      <a class="btn btn-primary btn-xl js-scroll-trigger" href="/quiz/get_question">PLAY ROUND 1</a>
     </div>
     <div class="overlay"></div>
   </header>
@@ -434,7 +434,7 @@ double the duration, but same velocity to show the elements only as the droid le
         <div class="col-lg-7 mx-auto" style="transform: translateY(40%);">
           <h3>RULES AND HOW TO PLAY!
           </h3>
-          <a class="btn btn-dark btn-xl js-scroll-trigger" href="#services">Click Here!</a>
+          <a class="btn btn-dark btn-xl js-scroll-trigger" href="#page-top">HOME</a>
         </div>
       </div>
     </div>
