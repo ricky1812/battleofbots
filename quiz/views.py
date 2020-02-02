@@ -49,7 +49,7 @@ def login_view(request):
 @login_required
 def logout_view(request):
 	logout(request)
-	return HttpResponseRedirect('/')
+	return render(request,'quiz/index.html',{})
 
 
 
@@ -73,7 +73,7 @@ def get_question(request):
 
 	user=User.objects.get(username=request.user.username)
 	round=Question.objects.get(round=user.profile.curr_round)
-	
+
 
 	if request.method=='POST':
 		answers=request.POST['answers']
