@@ -322,7 +322,7 @@
   <ul class="sidebar-nav">
     <li class="sidebar-brand" style="width: max-content;">
       <a class="js-scroll-trigger" >Budget left: {{user.profile.money}}</a>
-        <h4 id = "time">Time left:</h4>
+        <h5 id = "time" style="color: black;">Time left:</h5>
     </li>
 
 
@@ -341,7 +341,7 @@
         <a class="js-scroll-trigger" href="{% url 'b_index2' %}">Home</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="">Rules and Regulations</a>
+        <a class="js-scroll-trigger" href="/index2/#about">Rules and Regulations</a>
       </li>
         <li class="sidebar-nav-item">
         <a class="js-scroll-trigger" href="{% url 'play2' %}">Defence</a>
@@ -401,7 +401,7 @@
 	<a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'match_test' %}">BATTLE</a>
   </section>
 
-  
+
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
