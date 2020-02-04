@@ -16,6 +16,7 @@ urlpatterns = [
     path('end_page',views.end_page,name='end_page'),
     path('quiz1',views.quiz1,name='quiz1'),
     path('quiz2',views.quiz2,name='quiz2'),
+    path('selected',views.selected,name='selected'),
     path('auth/', include('social_django.urls', namespace='social')),  # <- Here
     ]
 if settings.DEBUG is True:

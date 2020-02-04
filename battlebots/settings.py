@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'x*@030lcz9120wye49w*o*y%e@h5&+=@&2q@uq@gu*h=n5q#1)'
+SECRET_KEY = 'UUbETwpTN1sLzzAxO8UrZbTZ'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -40,6 +40,16 @@ INSTALLED_APPS = [
     'game.apps.GameConfig',
     'multiselectfield',
     'quiz.apps.QuizConfig',
+    'social_django',
+    'django.contrib.sites',
+
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.twitter',
+
 ]
 
 MIDDLEWARE = [
@@ -52,7 +62,30 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+
+
+
+
+AUTHENTICATION_BACKENDS = (
+ 'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
+ 'social_core.backends.google.GoogleOpenId',  # for Google authentication
+ 'social_core.backends.google.GoogleOAuth2',  # for Google authentication
+'django.contrib.auth.backends.ModelBackend',
+'social_core.backends.facebook.FacebookOAuth2',
+
+ )
+
+
 ROOT_URLCONF = 'battlebots.urls'
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+#'context_processors': [
+...
+ #               'social_django.context_processors.backends',
+  #              'social_django.context_processors.login_redirect',
+   #         ],
+
 
 TEMPLATES = [
     {
@@ -65,6 +98,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',  # <- Here
+                'social_django.context_processors.login_redirect', # <- Here
             ],
         },
     },
@@ -103,12 +138,13 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -125,8 +161,11 @@ STATIC_URL = '/static/'
 MEDIA_URL='/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='452867490680-l6u5u0ucc1okbe93b78hoc14a1qcoa14.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'ah53nj_nECi8RLuFKG_jgknw'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='515423563242-4pmkii9j8bflm12vst1ku7p7avm2lli3.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'UUbETwpTN1sLzzAxO8UrZbTZ'
 
 SOCIAL_AUTH_FACEBOOK_KEY = '437101157149570'
 SOCIAL_AUTH_FACEBOOK_SECRET = '66fe2ea7507221d9adb4ba0be46ad577'
+
+LOGIN_REDIRECT_URL = '/quiz/'
+LOGIN_URL = 'login'

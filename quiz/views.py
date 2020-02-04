@@ -51,6 +51,21 @@ def logout_view(request):
 	logout(request)
 	return render(request,'quiz/index.html',{})
 
+def selected(request):
+	people=[]
+	profiles=Profile.objects.order_by("-score","submit_time")
+	print(profiles[0])
+	c=1
+	for i in profiles:
+		if c<=2:
+			people.append(i.user)
+			c+=1
+		else:
+			break
+
+
+	return render(request,'quiz/selected.html',{'people':people})
+
 
 
 def leaderboard(request):
@@ -96,9 +111,9 @@ def get_question(request):
 		else:
 			#message='Incorrect Answer!'
 			#context={'message':message}
-			user.profile.score-=5
+			#user.profile.score-=5
 			return redirect('quiz2')
-	if user.profile.curr_round<=5:
+	if user.profile.curr_round<=10:
 
 		return render(request,'quiz/quizpage.html',{'round':round})
 	else:

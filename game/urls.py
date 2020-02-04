@@ -1,5 +1,8 @@
 from django.urls import path
 from . import views
+from django.conf.urls import url, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns=[
 			path('',views.index,name='b_index1'),
@@ -26,6 +29,7 @@ urlpatterns=[
 			path('index2/main1',views.match1,name= 'match_test_1'),
 			path('index2/main2',views.match2,name= 'match_test_2'),
 			path('index2/main3',views.match3,name= 'match_test_3'),
+			path('auth/', include('social_django.urls', namespace='social')), 
 
 		]
 			
