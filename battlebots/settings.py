@@ -125,6 +125,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SITE_ID =1
+
 
 
 # Internationalization
@@ -149,12 +151,12 @@ STATIC_URL = '/static/'
 MEDIA_URL='/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='515423563242-4pmkii9j8bflm12vst1ku7p7avm2lli3.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'UUbETwpTN1sLzzAxO8UrZbTZ'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='730228847030-tpub8tfvmq3vjgknfajhiatkqn6hoaon.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '_pOYMXHDGJE0oOBQQ_ySvczW'
 
 SOCIAL_AUTH_FACEBOOK_KEY = '437101157149570'
 SOCIAL_AUTH_FACEBOOK_SECRET = '66fe2ea7507221d9adb4ba0be46ad577'
 
-LOGIN_REDIRECT_URL = '/quiz/'
+LOGIN_REDIRECT_URL = '/quiz/index2'
 LOGIN_URL = 'login'
 
