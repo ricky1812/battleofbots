@@ -19,7 +19,7 @@ from datetime import datetime
 class Question(models.Model):
 	question=models.CharField(max_length=500)
 	ans=models.CharField(max_length=500,default=None)
-	image = models.ImageField(upload_to='images',default='default.jpg')
+	image = models.ImageField(upload_to='images',default='/images/default.png')
 	round=models.IntegerField(default=1)
 
 	def __str__(self):
