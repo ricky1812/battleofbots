@@ -35,13 +35,11 @@
   <nav id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li class="sidebar-brand">
-        <a class="js-scroll-trigger" href="{% url 'login' %}">Login</a>
+        <a class="js-scroll-trigger" href="{% url 'social:begin' 'google-oauth2' %}">Login</a>
+        
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="{%url 'signup' %}">Signup</a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="">Rules and Regulations</a>
+        <a class="js-scroll-trigger" href="#about">Rules and Regulations</a>
       </li>
 
 

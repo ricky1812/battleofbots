@@ -57,7 +57,7 @@ def selected(request):
 	print(profiles[0])
 	c=1
 	for i in profiles:
-		if c<=2:
+		if c<=16:
 			people.append(i.user)
 			c+=1
 		else:

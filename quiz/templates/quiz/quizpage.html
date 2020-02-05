@@ -24,6 +24,9 @@
 	<script src="{% static 'quiz/autoquiz-submit.js' %}"></script>
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 	<style>
+		body{
+			overflow-x: auto;
+		}
 		#particles-js {
 			margin-top: 10%;
 			/*  position: fixed;
@@ -65,7 +68,7 @@
 			<div class="masthead text-white text-center">
 				<div class="container">
 
-					<div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+					<div class="col-md-10 col-lg-8 col-xl-7 mx-auto" style="transform: translateY(-20%);">
 						<h1 class="mb-5" style="color: white; font-size: 3em; font-family: 'Georgia, serif'; "> </h1>
 						<form method="post" action="">
 							{% csrf_token %}

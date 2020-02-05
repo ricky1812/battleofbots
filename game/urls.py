@@ -29,7 +29,7 @@ urlpatterns=[
 			path('index2/main1',views.match1,name= 'match_test_1'),
 			path('index2/main2',views.match2,name= 'match_test_2'),
 			path('index2/main3',views.match3,name= 'match_test_3'),
-			path('auth/', include('social_django.urls', namespace='social')), 
+			
 
 		]
 			
