@@ -338,37 +338,23 @@
       <li class="sidebar-nav-item">
         <a class="js-scroll-trigger" href="{% url 'b_index2' %}">Home</a>
       </li>
-    </ul>
   </nav>
   <!--<h1 style="font-size: xx-large;position: fixed;margin-left: 50%;transform: translateX(-50%);">Round 1</h1>-->
   <div class="info container">
 	  <div class="row">
-		  <div class="col-lg-5 col-xs-12">
+		  <div class="col-12">
 			  <h1>Winner</h1>
 			  <h2>{{winner.user.username}}</h2>
 			  <h3>{{winner.points}}</h3>
-		  </div>
-		  <div class="col-lg-2 col-xs-12">
-			  <h1>VS</h1>
-		  </div>
-		  <div class="col-lg-5 col-xs-12">
-			  <h1>Loser</h1>
-			  <h2>{{loser.user.username}}</h2>
-			  <h3>{{loser.points}}</h3>
-  
 		  </div>
 	  </div>
   </div>
   <div class="container">
 	  	<div class="row">
 			  <div class="col-12">
-				{% if request.user == winner.user %}
-					<a class="btn btn-primary btn-xl js-scroll-trigger round" style="color: black;"href="{% url 'play'%}">MOVE TO FINAL ROUND</a>
-				{%else%}
-					<h1 style="color: black">You Lost</h1>
-					<a class="btn btn-primary btn-xl js-scroll-trigger" style="color: black;"href="{% url 'b_index2'%}">RETURN TO HOME</a>
+		
+				<a class="btn btn-primary btn-xl js-scroll-trigger round" style="color: black;"href="{% url 'play'%}">MOVE TO NEXT ROUND</a>
 
-				{% endif %}
 			  </div>
 		  </div>
   </div>

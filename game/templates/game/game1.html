@@ -25,12 +25,12 @@
 
       }
       html, body {
-        background-color: #e4b10b;
+        background-color: #2e7e92;
       }
 
       .robot svg {
-        position: absolute;
-        top: 90%;
+        position: fixed;
+        top: 60%;
         left: 50%;
         display: block;
         margin: 0 auto;
@@ -54,19 +54,14 @@
         color: rgba(255,255,255,0.6);
       }
 
-      .info{
-          top: 30%;
-          position: fixed;
-          padding: 2vw;
-          left: 50%;
-          transform: translateX(-50%);
-
-      }
-
-      .info > div > div {
-          text-align: center;
-          
-      }
+	  .info{
+		  top:50%;
+		  position: fixed;
+		  color: black;
+		  text-align: center;
+		  left: 50%;
+		  transform: translateX(-50%);
+	  }
 
       @-webkit-keyframes robot_bounce{
 
@@ -188,6 +183,8 @@
       		#hover ellipse{
       		transform-origin:center center;
       		animation:shadow 1.1s ease-in-out 0s infinite alternate}
+
+	
 
 
   </style>
@@ -325,27 +322,58 @@
 		</g>
 	</g>
 </svg></div>
-<h1 style="font-size: x-large;position: fixed;margin-left: 50%;transform: translateX(-50%);">Round 2</h1>
 
-<div class="info container">
-    <div class="row">
-        <div class="col-lg-5 col-xs-12">
-            <h1>Winner</h1>
-            <h2>{{winner.user.username}}</h2>
-            <h3>{{winner.points}}</h3>
-        </div>
-        <div class="col-lg-2 col-xs-12">
-            <h1>VS</h1>
-        </div>
-        <div class="col-lg-5 col-xs-12">
-            <h1>Loser</h1>
-            <h2>{{loser.user.username}}</h2>
-            <h3>{{loser.points}}</h3>
 
-        </div>
-    </div>
-</div>
-    
+  <section class="content-section bg-primary text-white text-center" id="abc">
+  <a class="menu-toggle rounded" href="#">
+    <i class="fa fa-bars"></i>
+  </a>
+
+
+   <nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a class="js-scroll-trigger" >Welcome {{user.username}}</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="{% url 'b_index2' %}">Home</a>
+      </li>
+    </ul>
+  </nav>
+  <!--<h1 style="font-size: xx-large;position: fixed;margin-left: 50%;transform: translateX(-50%);">Round 1</h1>-->
+  <div class="info container">
+	  <div class="row">
+		  <div class="col-lg-5 col-xs-12">
+			  <h1>Winner</h1>
+			  <h2>{{winner.user.username}}</h2>
+			  <h3>{{winner.points}}</h3>
+		  </div>
+		  <div class="col-lg-2 col-xs-12">
+			  <h1>VS</h1>
+		  </div>
+		  <div class="col-lg-5 col-xs-12">
+			  <h1>Loser</h1>
+			  <h2>{{loser.user.username}}</h2>
+			  <h3>{{loser.points}}</h3>
+  
+		  </div>
+	  </div>
+  </div>
+  <div class="container">
+	  	<div class="row">
+			  <div class="col-12">
+				{% if request.user == winner.user %}
+					<a class="btn btn-primary btn-xl js-scroll-trigger round" style="color: black;"href="{% url 'play'%}">MOVE TO NEXT ROUND</a>
+				{%else%}
+					<h1 style="color: black">You Lost</h1>
+					<a class="btn btn-primary btn-xl js-scroll-trigger" style="color: black;"href="{% url 'b_index2'%}">RETURN TO HOME</a>
+
+				{% endif %}
+			  </div>
+		  </div>
+  </div>
+	  
+          
 
   
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
@@ -356,5 +384,11 @@
 
   <!-- Custom scripts for this template -->
   <script src="{% static 'js/stylish-portfolio.min.js' %}"></script>
+
+  <script>
+	  $(document).ready(function(){
+		  $('.round').hide().delay(50000).fadeIn(2200);
+	  })
+  </script>
 </body>
 </html>

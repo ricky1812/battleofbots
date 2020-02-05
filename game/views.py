@@ -85,16 +85,20 @@ def ordering_weapons(request,key):
 def ordered_weapons(request,key):
 	items=Weapons.objects.get(id=key)
 	user=User.objects.get(username=request.user.username)
+	p = Profile.objects.get(user = user)
 	ordered=OrderedWeapons()
 	ordered.player=request.user
 	ordered.weapons=items
 	print(ordered)
 	ordered.save()
-	user.profile.points+=items.points
-	user.profile.money-=items.cost
-	user.profile.weapon_list=str(user.profile.weapon_list)+", "+str(items.title)
+	#user.profile.points+=items.points
+	#user.profile.money-=items.cost
+	#user.profile.weapon_list=str(user.profile.weapon_list)+", "+str(items.title)
 	#print(user.profile.weapon_list)
-	user.save()
+	p.points += items.points
+	p.money -= items.cost
+	p.weapon_list = str(p.weapon_list) + " "+ str(items.title)
+	p.save()
 	#if request.method=="POST":
 
 
@@ -115,14 +119,15 @@ def sell_weapons_list(request):
 def sell_weapons(request,key):
 	items=Weapons.objects.get(id=key)
 	user=User.objects.get(username=request.user)
+	p = Profile.objects.get(user = user)
 	sell=OrderedWeapons.objects.get(player=request.user, weapons=items)
-	user.profile.points-=items.points
-	user.profile.money+=items.cost
+	p.points-=items.points
+	p.money+=items.cost
 	#user.profile.weapon_list.remove(items.title)
 	print(user.profile.weapon_list)
 	sell.delete()
 	#sell.save()
-	user.save()
+	p.save()
 
 	return redirect('/index2/play')
 
@@ -248,10 +253,19 @@ def match(request):
 		loser = player1
 		player1.is_playing = False
 		player1.save()
-	winner.curr_round += 1
-	p = Profile1(user = winner.user,image = winner.image,points = winner.points , money = winner.money,weapon_list = winner.weapon_list,defence_list = winner.defence_list,is_playing = winner.is_playing)
-	p.save()
-
+	#winner.curr_round += 1
+	counter = 0
+	for i in range(len(Profile1.objects.all())):
+		if (winner.user.username == Profile1.objects.all()[i].user.username):
+			print(winner)
+			print(Profile1.objects.all()[i])
+			counter = 1
+			break
+	print(counter)
+	if(counter == 0):
+		p = Profile1(user=winner.user, image=winner.image, points=winner.points, money=winner.money,weapon_list=winner.weapon_list, defence_list=winner.defence_list, is_playing=winner.is_playing)
+		p.save()
+		
 	return render(request,'game/game.html',{'winner':winner,'loser':loser})
 
 
@@ -260,64 +274,74 @@ def match1(request):
 	player1 = User.objects.get(username=request.user)
 	player1 = Profile1.objects.get(user=player1)
 	player1_rank = players.index(player1)
+	if (len(players)%2 == 1 and player1_rank == len(players)-1):
+		p = Profile2(user=player1.user, image=player1.image, points=player1.points, money=player1.money,weapon_list=player1.weapon_list, defence_list=player1.defence_list, is_playing=player1.is_playing)
+		p.save()
+		return render(request, 'game/default.html', {'winner': player1})
 
-	if (player1_rank % 2 == 0):
-		player2_rank = player1_rank + 1
 	else:
-		player2_rank = player1_rank - 1
-	player2 = players[player2_rank]
+		if (player1_rank % 2 == 0):
+			player2_rank = player1_rank + 1
+		else:
+			player2_rank = player1_rank - 1
+		player2 = players[player2_rank]
+		weapons1 = OrderedWeapons.objects.filter(player=request.user)
+		weapons2 = OrderedWeapons.objects.filter(player=player2.user)
+		defences1 = OrderedDefence.objects.filter(player=request.user)
+		defences2 = OrderedDefence.objects.filter(player=player2.user)
 
-	weapons1 = OrderedWeapons.objects.filter(player=request.user)
-	weapons2 = OrderedWeapons.objects.filter(player=player2.user)
-	defences1 = OrderedDefence.objects.filter(player=request.user)
-	defences2 = OrderedDefence.objects.filter(player=player2.user)
-
-	for i in defences2:
-		if (i.defence.title == 'Fire Ressistant'):
-			for j in weapons1:
-				if (j.weapons.title == 'Flame Thrower'):
-					player1.points -= 25
-		elif (i.defence.title == 'Water Resistant'):
-			for j in weapons1:
-				if (j.weapons.title == 'Water Jet'):
-					player1.points -= 25
-		elif (i.defence.title == 'Bulletproof'):
-			for j in weapons1:
-				if (j.weapons.title == 'Machine Gun'):
-					player1.points -= 30
-				player1.save()
-
-	for i in defences1:
-		if (i.defence.title == 'Fire Ressistant'):
-			for j in weapons2:
-				if (j.weapons.title == 'Flame Thrower'):
-					player2.points -= 25
-		elif (i.defence.title == 'Water Resistant'):
-			for j in weapons2:
-				if (j.weapons.title == 'Water Jet'):
-					player2.points -= 25
-		elif (i.defence.title == 'Bulletproof'):
-			for j in weapons2:
-				if (j.weapons.title == 'Machine Gun'):
-					player2.points -= 30
+		for i in defences2:
+			if (i.defence.title == 'Fire Ressistant'):
+				for j in weapons1:
+					if (j.weapons.title == 'Flame Thrower'):
+						player1.points -= 25
+			elif (i.defence.title == 'Water Resistant'):
+				for j in weapons1:
+					if (j.weapons.title == 'Water Jet'):
+						player1.points -= 25
+			elif (i.defence.title == 'Bulletproof'):
+				for j in weapons1:
+					if (j.weapons.title == 'Machine Gun'):
+						player1.points -= 30
+			player1.save()
+		for i in defences1:
+			if (i.defence.title == 'Fire Ressistant'):
+				for j in weapons2:
+					if (j.weapons.title == 'Flame Thrower'):
+						player2.points -= 25
+			elif (i.defence.title == 'Water Resistant'):
+				for j in weapons2:
+					if (j.weapons.title == 'Water Jet'):
+						player2.points -= 25
+			elif (i.defence.title == 'Bulletproof'):
+				for j in weapons2:
+					if (j.weapons.title == 'Machine Gun'):
+						player2.points -= 30
 			player2.save()
 
-	if (player1.points > player2.points):
-		winner = player1
-		loser = player2
-		player2.is_playing = False
-		player2.save()
-	elif (player2.points > player1.points):
-		winner = player2
-		loser = player1
-		player1.is_playing = False
-		player1.save()
+		if (player1.points > player2.points):
+			winner = player1
+			loser = player2
+			player2.is_playing = False
+			player2.save()
+		elif (player2.points > player1.points):
+			winner = player2
+			loser = player1
+			player1.is_playing = False
+			player1.save()
+		counter = 0
+		for i in range(len(Profile2.objects.all())):
+			if (winner.user.username == Profile2.objects.all()[i].user.username):
+				print(winner)
+				print(Profile2.objects.all()[i])
+				counter = 1
+				break
+		print(counter)
+		if(counter == 0):
+			p = Profile2(user=winner.user, image=winner.image, points=winner.points, money=winner.money,weapon_list=winner.weapon_list, defence_list=winner.defence_list, is_playing=winner.is_playing)
+			p.save()
 
-	p = Profile2(user=winner.user, image=winner.image, points=winner.points, money=winner.money,
-				 weapon_list=winner.weapon_list, defence_list=winner.defence_list, is_playing=winner.is_playing)
-	p.save()
-
-	return render(request, 'game/game1.html', {'player': player1})
+		return render(request, 'game/game1.html', {'winner':winner,'loser':loser})
 
 
 def match2(request):
@@ -325,63 +349,78 @@ def match2(request):
 	player1 = User.objects.get(username=request.user)
 	player1 = Profile2.objects.get(user=player1)
 	player1_rank = players.index(player1)
+	if (len(players)%2 == 1 and player1_rank == len(players)-1):
+		p = Profile3(user=player1.user, image=player1.image, points=player1.points, money=player1.money,weapon_list=player1.weapon_list, defence_list=player1.defence_list, is_playing=player1.is_playing)
+		p.save()
+		return render(request, 'game/default.html', {'player': player1})
 
-	if (player1_rank % 2 == 0):
-		player2_rank = player1_rank + 1
 	else:
-		player2_rank = player1_rank - 1
-	player2 = players[player2_rank]
+		if (player1_rank % 2 == 0):
+			player2_rank = player1_rank + 1
+		else:
+			player2_rank = player1_rank - 1
+		player2 = players[player2_rank]
+		weapons1 = OrderedWeapons.objects.filter(player=request.user)
+		weapons2 = OrderedWeapons.objects.filter(player=player2.user)
+		defences1 = OrderedDefence.objects.filter(player=request.user)
+		defences2 = OrderedDefence.objects.filter(player=player2.user)
 
-	weapons1 = OrderedWeapons.objects.filter(player=request.user)
-	weapons2 = OrderedWeapons.objects.filter(player=player2.user)
-	defences1 = OrderedDefence.objects.filter(player=request.user)
-	defences2 = OrderedDefence.objects.filter(player=player2.user)
+		for i in defences2:
+			if (i.defence.title == 'Fire Ressistant'):
+				for j in weapons1:
+					if (j.weapons.title == 'Flame Thrower'):
+						player1.points -= 25
+			elif (i.defence.title == 'Water Resistant'):
+				for j in weapons1:
+					if (j.weapons.title == 'Water Jet'):
+						player1.points -= 25
+			elif (i.defence.title == 'Bulletproof'):
+				for j in weapons1:
+					if (j.weapons.title == 'Machine Gun'):
+						player1.points -= 30
+					player1.save()
 
-	for i in defences2:
-		if (i.defence.title == 'Fire Ressistant'):
-			for j in weapons1:
-				if (j.weapons.title == 'Flame Thrower'):
-					player1.points -= 25
-		elif (i.defence.title == 'Water Resistant'):
-			for j in weapons1:
-				if (j.weapons.title == 'Water Jet'):
-					player1.points -= 25
-		elif (i.defence.title == 'Bulletproof'):
-			for j in weapons1:
-				if (j.weapons.title == 'Machine Gun'):
-					player1.points -= 30
-				player1.save()
+		for i in defences1:
+			if (i.defence.title == 'Fire Ressistant'):
+				for j in weapons2:
+					if (j.weapons.title == 'Flame Thrower'):
+						player2.points -= 25
+			elif (i.defence.title == 'Water Resistant'):
+				for j in weapons2:
+					if (j.weapons.title == 'Water Jet'):
+						player2.points -= 25
+			elif (i.defence.title == 'Bulletproof'):
+				for j in weapons2:
+					if (j.weapons.title == 'Machine Gun'):
+						player2.points -= 30
+				player2.save()
 
-	for i in defences1:
-		if (i.defence.title == 'Fire Ressistant'):
-			for j in weapons2:
-				if (j.weapons.title == 'Flame Thrower'):
-					player2.points -= 25
-		elif (i.defence.title == 'Water Resistant'):
-			for j in weapons2:
-				if (j.weapons.title == 'Water Jet'):
-					player2.points -= 25
-		elif (i.defence.title == 'Bulletproof'):
-			for j in weapons2:
-				if (j.weapons.title == 'Machine Gun'):
-					player2.points -= 30
+		if (player1.points > player2.points):
+			winner = player1
+			loser = player2
+			player2.is_playing = False
 			player2.save()
+		elif (player2.points > player1.points):
+			winner = player2
+			loser = player1
+			player1.is_playing = False
+			player1.save()
+		counter = 0
+		for i in range(len(Profile3.objects.all())):
+			if (winner.user.username == Profile2.objects.all()[i].user.username):
+				print(winner)
+				print(Profile3.objects.all()[i])
+				counter = 1
+				break
+		print(counter)
+		if(counter == 0):
+			p = Profile3(user=winner.user, image=winner.image, points=winner.points, money=winner.money,weapon_list=winner.weapon_list, defence_list=winner.defence_list, is_playing=winner.is_playing)
+			p.save()
 
-	if (player1.points > player2.points):
-		winner = player1
-		loser = player2
-		player2.is_playing = False
-		player2.save()
-	elif (player2.points > player1.points):
-		winner = player2
-		loser = player1
-		player1.is_playing = False
-		player1.save()
-	p = Profile3(user=winner.user, image=winner.image, points=winner.points, money=winner.money,
-				 weapon_list=winner.weapon_list, defence_list=winner.defence_list, is_playing=winner.is_playing)
-	p.save()
+		return render(request, 'game/game2.html', {'winner':winner,'loser':loser})
 
-	return render(request, 'game/game2.html', {'player': player1})
+
+	
 
 
 def match3(request):
@@ -389,61 +428,72 @@ def match3(request):
 	player1 = User.objects.get(username=request.user)
 	player1 = Profile3.objects.get(user=player1)
 	player1_rank = players.index(player1)
+	if (len(players)%2 == 1 and player1_rank == len(players)-1):
+		p = Profile4(user=player1.user, image=player1.image, points=player1.points, money=player1.money,weapon_list=player1.weapon_list, defence_list=player1.defence_list, is_playing=player1.is_playing)
+		p.save()
+		return render(request, 'game/default.html', {'player': player1})
 
-	if (player1_rank % 2 == 0):
-		player2_rank = player1_rank + 1
 	else:
-		player2_rank = player1_rank - 1
-	player2 = players[player2_rank]
+		if (player1_rank % 2 == 0):
+			player2_rank = player1_rank + 1
+		else:
+			player2_rank = player1_rank - 1
+		player2 = players[player2_rank]
+		weapons1 = OrderedWeapons.objects.filter(player=request.user)
+		weapons2 = OrderedWeapons.objects.filter(player=player2.user)
+		defences1 = OrderedDefence.objects.filter(player=request.user)
+		defences2 = OrderedDefence.objects.filter(player=player2.user)
 
-	weapons1 = OrderedWeapons.objects.filter(player=request.user)
-	weapons2 = OrderedWeapons.objects.filter(player=player2.user)
-	defences1 = OrderedDefence.objects.filter(player=request.user)
-	defences2 = OrderedDefence.objects.filter(player=player2.user)
+		for i in defences2:
+			if (i.defence.title == 'Fire Ressistant'):
+				for j in weapons1:
+					if (j.weapons.title == 'Flame Thrower'):
+						player1.points -= 25
+			elif (i.defence.title == 'Water Resistant'):
+				for j in weapons1:
+					if (j.weapons.title == 'Water Jet'):
+						player1.points -= 25
+			elif (i.defence.title == 'Bulletproof'):
+				for j in weapons1:
+					if (j.weapons.title == 'Machine Gun'):
+						player1.points -= 30
+					player1.save()
 
-	for i in defences2:
-		if (i.defence.title == 'Fire Ressistant'):
-			for j in weapons1:
-				if (j.weapons.title == 'Flame Thrower'):
-					player1.points -= 25
-		elif (i.defence.title == 'Water Resistant'):
-			for j in weapons1:
-				if (j.weapons.title == 'Water Jet'):
-					player1.points -= 25
-		elif (i.defence.title == 'Bulletproof'):
-			for j in weapons1:
-				if (j.weapons.title == 'Machine Gun'):
-					player1.points -= 30
-				player1.save()
+		for i in defences1:
+			if (i.defence.title == 'Fire Ressistant'):
+				for j in weapons2:
+					if (j.weapons.title == 'Flame Thrower'):
+						player2.points -= 25
+			elif (i.defence.title == 'Water Resistant'):
+				for j in weapons2:
+					if (j.weapons.title == 'Water Jet'):
+						player2.points -= 25
+			elif (i.defence.title == 'Bulletproof'):
+				for j in weapons2:
+					if (j.weapons.title == 'Machine Gun'):
+						player2.points -= 30
+				player2.save()
 
-	for i in defences1:
-		if (i.defence.title == 'Fire Ressistant'):
-			for j in weapons2:
-				if (j.weapons.title == 'Flame Thrower'):
-					player2.points -= 25
-		elif (i.defence.title == 'Water Resistant'):
-			for j in weapons2:
-				if (j.weapons.title == 'Water Jet'):
-					player2.points -= 25
-		elif (i.defence.title == 'Bulletproof'):
-			for j in weapons2:
-				if (j.weapons.title == 'Machine Gun'):
-					player2.points -= 30
+		if (player1.points > player2.points):
+			winner = player1
+			loser = player2
+			player2.is_playing = False
 			player2.save()
+		elif (player2.points > player1.points):
+			winner = player2
+			loser = player1
+			player1.is_playing = False
+			player1.save()
+		counter = 0
+		for i in range(len(Profile4.objects.all())):
+			if (winner.user.username == Profile2.objects.all()[i].user.username):
+				print(winner)
+				print(Profile4.objects.all()[i])
+				counter = 1
+				break
+		print(counter)
+		if(counter == 0):
+			p = Profile4(user=winner.user, image=winner.image, points=winner.points, money=winner.money,weapon_list=winner.weapon_list, defence_list=winner.defence_list, is_playing=winner.is_playing)
+			p.save()
 
-	if (player1.points > player2.points):
-		winner = player1
-		loser = player2
-		player2.is_playing = False
-		player2.save()
-	elif (player2.points > player1.points):
-		winner = player2
-		loser = player1
-		player1.is_playing = False
-		player1.save()
-
-	p = Profile4(user=winner.user, image=winner.image, points=winner.points, money=winner.money,
-				 weapon_list=winner.weapon_list, defence_list=winner.defence_list, is_playing=winner.is_playing)
-	p.save()
-
-	return render(request, 'game/game3.html', {'player': player1})
+		return render(request, 'game/game3.html', {'winner':winner,'loser':loser})

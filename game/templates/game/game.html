@@ -336,13 +336,7 @@
         <a class="js-scroll-trigger" >Welcome {{user.username}}</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="{% url 'index' %}">Logout</a>
-      </li>
-      <li class="sidebar-nav-item">
         <a class="js-scroll-trigger" href="{% url 'b_index2' %}">Home</a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="">Rules and Regulations</a>
       </li>
     </ul>
   </nav>
@@ -369,7 +363,7 @@
 	  	<div class="row">
 			  <div class="col-12">
 				{% if request.user == winner.user %}
-					<a class="btn btn-primary btn-xl js-scroll-trigger" style="color: black;"href="{% url 'match_test_1'%}">MOVE TO ROUND 2</a>
+					<a class="btn btn-primary btn-xl js-scroll-trigger round" style="color: black;"href="{% url 'play'%}">MOVE TO NEXT ROUND</a>
 				{%else%}
 					<h1 style="color: black">You Lost</h1>
 					<a class="btn btn-primary btn-xl js-scroll-trigger" style="color: black;"href="{% url 'b_index2'%}">RETURN TO HOME</a>
@@ -390,5 +384,11 @@
 
   <!-- Custom scripts for this template -->
   <script src="{% static 'js/stylish-portfolio.min.js' %}"></script>
+
+  <script>
+	  $(document).ready(function(){
+		  $('.round').hide().delay(50000).fadeIn(2200);
+	  })
+  </script>
 </body>
 </html>
