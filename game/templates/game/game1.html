@@ -364,7 +364,8 @@
 			  <div class="col-12">
 				{% if request.user == winner.user %}
 					<a class="btn btn-primary btn-xl js-scroll-trigger round" style="color: black;"href="{% url 'play'%}">MOVE TO NEXT ROUND</a>
-				{%else%}
+			<h3>Next round will start at :</h3>
+					{%else%}
 					<h1 style="color: black">You Lost</h1>
 					<a class="btn btn-primary btn-xl js-scroll-trigger" style="color: black;"href="{% url 'b_index2'%}">RETURN TO HOME</a>
 

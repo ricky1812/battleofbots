@@ -341,7 +341,7 @@
         <a class="js-scroll-trigger" href="{% url 'b_index2' %}">Home</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="/index2/#about">Rules and Regulations</a>
+        <a class="js-scroll-trigger" href="/index2/#about">Rules and How to Play</a>
       </li>
         <li class="sidebar-nav-item">
         <a class="js-scroll-trigger" href="{% url 'play2' %}">Defence</a>
@@ -370,9 +370,6 @@
               <h4 class="text-primary" style="font-size:2em;">
                   <strong>{{i.title}}</strong><br>
               </h4>
-              <i class="text-primary" style="font-size:2em;">
-          <b style="color='white';">  Description: </b> {{i.description}}
-              </i><br>
                 <i class="text-primary" style="font-size:2em;"> Price: {{i.cost}}</i><br>
         <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'ordering-weapons' i.id %}">BUY THIS WEAPON</a>
 
@@ -384,9 +381,6 @@
               <h4 class="text-primary" style="font-size:2em;">
                   <strong>{{i.title}}</strong><br>
               </h4>
-                <i class="text-primary" style="font-size:2em;">
-            <b style="color='white';">  Description: </b>   {{i.description}}
-               </i><br>
             <i class="text-primary" style="font-size:2em;"> Price:{{i.cost}}</i><br>
             <a class="btn btn-primary btn-xl js-scroll-trigger disabled" >BUY THIS WEAPON</a>
             <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'confirm-del' i.id %}">SELL IT</a>
@@ -398,7 +392,7 @@
       </div>
         {% endfor %}
 	</div>
-	<a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'match_test' %}">BATTLE</a>
+	<a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'match_test_1' %}">BATTLE</a>
   </section>
 
 

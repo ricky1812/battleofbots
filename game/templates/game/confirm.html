@@ -338,10 +338,10 @@
         <a class="js-scroll-trigger" href="{% url 'index' %}">Logout</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="{% url 'index2' %}">Home</a>
+        <a class="js-scroll-trigger" href="{% url 'b_index2' %}">Home</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="">Rules and Regulations</a>
+        <a class="js-scroll-trigger" href="">Rules and How to Play</a>
       </li>
       <li class="sidebar-nav-item">
         <a class="js-scroll-trigger" href="{% url 'play2' %}">Defence</a>
@@ -355,7 +355,7 @@
   </nav>
     <div class="container" >
       <div class="content-section-heading">
-          <h1 class="mb-1" style=" font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;">Do you want to buy {{items.title}}?</h1>
+          <h1 class="mb-1" style=" font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;color:black;">Do you want to buy {{items.title}}?</h1>
       </div>
         <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'confirm-add' items.id %}">Confirm</a>
 

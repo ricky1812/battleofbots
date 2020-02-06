@@ -42,7 +42,7 @@ def login_view(request):
 		else:
 			message='Invalid Login'
 	context={'message':message}
-	return render(request,'game/login.html',context)
+	return render(request,'game/homepage.html',context)
 
 @login_required
 def logout_view(request):
@@ -74,7 +74,8 @@ def ordering_weapons(request,key):
 	p = Profile.objects.get(user = request.user)
 	i = Weapons.objects.get(id = key)
 	if (p.money < i.cost):
-		return HttpResponse('Not Enough Money')
+		return render(request,'game/notenoughmoney.html',{})
+
 	else:
 		items=Weapons.objects.get(id=key)
 		print(items)
@@ -150,7 +151,7 @@ def ordering_defences(request,key):
 	p = Profile.objects.get(user = request.user)
 	i = Defence.objects.get(id = key)
 	if (p.money < i.cost):
-		return HttpResponse('Not Enough Money')
+		return render(request,'game/notenoughmoney.html',{})
 	else:
 		items=Defence.objects.get(id=key)
 		print(items)
@@ -226,7 +227,7 @@ def match(request):
 			for j in weapons1:
 				if(j.weapons.title == 'Machine Gun'):
 					player1.points -= 30
-				player1.save()
+				#player1.save()
 
 	for i in defences1:
 		if(i.defence.title == 'Fire Ressistant'):
@@ -241,18 +242,18 @@ def match(request):
 			for j in weapons2:
 				if(j.weapons.title == 'Machine Gun'):
 					player2.points -= 30
-			player2.save()
+			#player2.save()
 
 	if(player1.points > player2.points):
 		winner = player1
-		loser = player2
 		player2.is_playing = False
-		player2.save()
+		loser = player2
+		#player2.save()
 	elif(player2.points > player1.points):
 		winner = player2
-		loser = player1
 		player1.is_playing = False
-		player1.save()
+		loser = player1
+		#player1.save()
 	#winner.curr_round += 1
 	counter = 0
 	for i in range(len(Profile1.objects.all())):
@@ -265,6 +266,8 @@ def match(request):
 	if(counter == 0):
 		p = Profile1(user=winner.user, image=winner.image, points=winner.points, money=winner.money,weapon_list=winner.weapon_list, defence_list=winner.defence_list, is_playing=winner.is_playing)
 		p.save()
+		loser.save()
+		winner.save()
 		
 	return render(request,'game/game.html',{'winner':winner,'loser':loser})
 

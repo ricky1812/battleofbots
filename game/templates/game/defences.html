@@ -354,7 +354,7 @@
         <a class="js-scroll-trigger" href="{% url 'b_index2' %}">Home</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="/index2/#about">Rules and Regulations</a>
+        <a class="js-scroll-trigger" href="/index2/#about">Rules and How to Play</a>
       </li>
         <li class="sidebar-nav-item">
         <a class="js-scroll-trigger" href="{% url 'play' %}">Weapons</a>
@@ -383,11 +383,8 @@
           <h4 class="text-primary" style="font-size:2em;">
               <strong>{{i.title}}</strong><br>
           </h4>
-          <i class="text-primary" style="font-size:2em;">
-      <b style="color='white';">  Description: </b> {{i.description}}
-          </i><br>
             <i class="text-primary" style="font-size:2em;"> Price: {{i.cost}}</i><br>
-     <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'confirm-add-2' i.id %}">BUY THIS DEFENCE</a>
+     <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'ordering-defences' i.id %}">BUY THIS DEFENCE</a>
 
             <br />
             <br />
@@ -396,8 +393,6 @@
                 <strong>{{i.title}}</strong><br>
             </h4>
               <i class="text-primary" style="font-size:2em;">
-          <b style="color='white';">  Description: </b>   {{i.description}}
-             </i><br>
           <i class="text-primary" style="font-size:2em;"> Price:{{i.cost}}</i><br>
           <a class="btn btn-primary btn-xl js-scroll-trigger disabled" >BUY THIS DEFENCE</a>
           <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'confirm-del-2' i.id %}">SELL IT</a>
