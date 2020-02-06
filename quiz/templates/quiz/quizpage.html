@@ -25,7 +25,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 	<style>
 		body{
-			overflow-x: auto;
+			overflow-x: hidden;
+			overflow-y: hidden;
 		}
 		#particles-js {
 			margin-top: 10%;
@@ -38,13 +39,45 @@
 
 		}
 
-		@media (min-width:1000px) {
+		@media (min-width:768px) {
+			#container {
+				position: absolute;
+				left: 6%;
+				right: 10%;
+
+			}
+			#question{
+			font-size:6em;}
+			#logo{
+			top:10%;
+			height:100px;}
+
+			.q{
+				transform: translateY(-50px);
+			}
+		}
+		@media (max-width:767px) {
 			#container {
 				position: absolute;
 				left: 6%;
 				right: 10%;
 			}
+#question{
+			font-size:3em;}
+			.q{
+				transform: translateY(10px);
+			}
 		}
+		      #logo{
+    position:absolute;
+    left:5%;
+    }
+    @media (max-width:767px)
+    {#logo{
+    margin-top:20px;
+     top:5%;
+    height:60px;
+ }}
 	</style>
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 </head>
@@ -61,6 +94,7 @@
 	<br />
 	<br />
 	<canvas id="canvas"></canvas>
+<a href="https://arhn.co.in/" target="_blank"><img src="{% static 'img/logo.png' %}" id="logo"></a>
 
 	<div id="container">
 
@@ -68,17 +102,17 @@
 			<div class="masthead text-white text-center">
 				<div class="container">
 
-					<div class="col-md-10 col-lg-8 col-xl-7 mx-auto" style="transform: translateY(-20%);">
+					<div class="col-md-10 col-lg-8 col-xl-7 mx-auto q">
 						<h1 class="mb-5" style="color: white; font-size: 3em; font-family: 'Georgia, serif'; "> </h1>
 						<form method="post" action="">
 							{% csrf_token %}
 							<br />
 							<h2>{{ message }}</h2>
 
-							<h1 class="mb-5" style="color: white; font-size: 3em; font-family: 'Georgia, serif'; ">
+							<h1 class="mb-5" id="question" style="color: white; font-family: 'Georgia, serif'; ">
 								Question {{round.round}}</h1>
-								<img class="img-fluid img-thumbnail" src="{{ round.image.url }}" style="width:300px;height:200px;">
-							<h3 class="mb-5" style="color: white; font-size: 2.5em; font-family: 'Roboto';">
+								<img class="img-fluid img-thumbnail" src="{{ round.image.url }}" style="width:300px;height:200px;margin-bottom: 2px;"><br>
+							<h3 class="mb-5" style="color: white; font-size: 1.5em; font-family: 'Roboto';">
 								{{round.question}}</h3>
 
 							<input class="form-control form-control-xl" type="text" placeholder="Type your answer here!"

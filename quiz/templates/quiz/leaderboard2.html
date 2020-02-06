@@ -45,7 +45,22 @@
 position:absolute;
 left:24%;
 top:10%;}}
-
+@media (min-width:768px){
+ #logo{
+    position:absolute;
+    top:10%;
+    height:100px;
+}}
+@media (max-width:767px)
+{
+#logo{
+    margin-top:20px;
+     top:5%;
+    height:60px;
+}}
+#logo{
+ left:5%;
+ }
    </style>
    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
@@ -100,6 +115,7 @@ top:10%;}}
     	</nav>
 
 <div>
+<a href="https://arhn.co.in/" target="_blank"><img src="{% static 'img/logo.png' %}" id="logo"></a>
 
   <div class="container" style="position: absolute;left:-2%;>
 

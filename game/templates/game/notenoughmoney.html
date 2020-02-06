@@ -29,8 +29,8 @@
       }
 
       .robot svg {
-        position: fixed;
-        top: 60%;
+        position: absolute;
+        top: 90%;
         left: 50%;
         display: block;
         margin: 0 auto;
@@ -53,15 +53,6 @@
       .credit a {
         color: rgba(255,255,255,0.6);
       }
-
-	  .info{
-		  top:50%;
-		  position: fixed;
-		  color: black;
-		  text-align: center;
-		  left: 50%;
-		  transform: translateX(-50%);
-	  }
 
       @-webkit-keyframes robot_bounce{
 
@@ -183,8 +174,6 @@
       		#hover ellipse{
       		transform-origin:center center;
       		animation:shadow 1.1s ease-in-out 0s infinite alternate}
-
-	
 
 
   </style>
@@ -329,6 +318,16 @@
     <i class="fa fa-bars"></i>
   </a>
 
+<nav>
+  <ul class="sidebar-nav">
+    <li class="sidebar-brand" style="width: max-content;">
+        <a class="js-scroll-trigger" >Budget left: {{user.profile.money}}</a>
+        <h4 id = "time">Time left:</h4>
+    </li>
+
+
+  </ul>
+</nav>
 
    <nav id="sidebar-wrapper">
     <ul class="sidebar-nav">
@@ -336,44 +335,30 @@
         <a class="js-scroll-trigger" >Welcome {{user.username}}</a>
       </li>
       <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="{% url 'index' %}">Logout</a>
+      </li>
+      <li class="sidebar-nav-item">
         <a class="js-scroll-trigger" href="{% url 'b_index2' %}">Home</a>
       </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="">Rules and How to Play</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="{% url 'play2' %}">Defence</a>
+	  </li>
+	  <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="{% url 'play' %}">Weapons</a>
+      </li>
+        
+
     </ul>
   </nav>
-  <!--<h1 style="font-size: xx-large;position: fixed;margin-left: 50%;transform: translateX(-50%);">Round 1</h1>-->
-  <div class="info container">
-	  <div class="row">
-		  <div class="col-lg-5 col-xs-12">
-			  <h1>Winner</h1>
-			  <h2>{{winner.user.username}}</h2>
-			  <h3>{{winner.points}}</h3>
-		  </div>
-		  <div class="col-lg-2 col-xs-12">
-			  <h1>VS</h1>
-		  </div>
-		  <div class="col-lg-5 col-xs-12">
-			  <h1>Loser</h1>
-			  <h2>{{loser.user.username}}</h2>
-			  <h3>{{loser.points}}</h3>
-  
-		  </div>
-	  </div>
-  </div>
-  <div class="container">
-	  	<div class="row">
-			  <div class="col-12">
-				{% if request.user == winner.user %}
-					<a class="btn btn-primary btn-xl js-scroll-trigger round" style="color: black;"href="{% url 'play'%}">MOVE TO FINAL ROUND</a>
-				{%else%}
-					<h1 style="color: black">You Lost</h1>
-					<a class="btn btn-primary btn-xl js-scroll-trigger" style="color: black;"href="{% url 'b_index2'%}">RETURN TO HOME</a>
-
-				{% endif %}
-			  </div>
-		  </div>
-  </div>
-	  
-          
+    <div class="container" >
+      <div class="content-section-heading">
+          <h1 class="mb-1" style=" font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; color: black;">Not Enough Money !!</h1>
+      </div>
+        <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'play' %}">Continue Building your Bot</a>
+  </section>
 
   
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
@@ -384,11 +369,37 @@
 
   <!-- Custom scripts for this template -->
   <script src="{% static 'js/stylish-portfolio.min.js' %}"></script>
-
-  <script>
-	  $(document).ready(function(){
-		  $('.round').hide().delay(50000).fadeIn(2200);
-	  })
-  </script>
 </body>
 </html>
+
+
+<script>
+	// Set the date we're counting down to
+var countDownDate = new Date("Feb 12, 2020 12:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+// Get todays date and time
+var now = new Date().getTime();
+
+// Find the distance between now and the count down date
+var distance = countDownDate - now;
+
+// Time calculations for days, hours, minutes and seconds
+var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+// Display the result in the element with id="demo"
+document.getElementById("time").innerHTML = "Time Left:" + days + "d " + hours + "h "
++ minutes + "m " + seconds + "s ";
+
+// If the count down is finished, write some text
+if (distance < 0) {
+	clearInterval(x);
+	window.location="/index2/main";
+}
+}, 1000);
+</script>

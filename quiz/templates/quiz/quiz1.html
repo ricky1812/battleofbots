@@ -34,6 +34,20 @@
 		#canvas{
 			z-index: -2;
 		}
+				@media (min-width:768px){
+				     #logo{
+    position:absolute;
+    top:10%;
+    height:100px;
+    }}
+    @media (max-width:767px)
+    {#logo{
+    margin-top:20px;
+     top:5%;
+    height:60px;
+ }}
+ #logo{
+ left:5%;}
 	</style>
 </head>
 
@@ -49,6 +63,7 @@
 			<a class="btn btn-primary" href="{% url 'leaderboard' %}">Leaderboard</a>
 		</div>
 	</nav>
+<a href="https://arhn.co.in/" target="_blank"><img src="{% static 'img/logo.png' %}" id="logo"></a>
 	<canvas id="canvas"></canvas>
 
 	<div id="particles-js">
