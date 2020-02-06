@@ -110,7 +110,16 @@ double the duration, but same velocity to show the elements only as the droid le
         transform: translateX(20px);
       }
     }
-
+		    #logo{
+    position:absolute;
+    top:5%;
+    left:5%;
+    height:100px;}
+    @media (max-width:767px)
+    {#logo{
+    margin-top:-10px;
+    height:80px;
+ }}
   </style>
 
 </head>
@@ -122,9 +131,9 @@ double the duration, but same velocity to show the elements only as the droid le
     <i class="fa fa-bars"></i>
   </a>
   <nav id="sidebar-wrapper">
-    <ul class="sidebar-nav">
+    <ul class="sidebar-nav" style="position:absolute;top:15%;">
       <li class="sidebar-brand">
-        <button type="button" class="btn btn-light">
+        <button type="button" class="btn btn-light" style="width:90%;">
           <a class="js-scroll-trigger" href="{% url 'social:begin' 'google-oauth2' %}" style="color: black;"><img src="../../static/img/g.png" alt="" height="50px" width="50px">Google Login</a>
 
         </button>        
@@ -139,6 +148,8 @@ double the duration, but same velocity to show the elements only as the droid le
 
   <!-- Header -->
   <header class="masthead d-flex">
+<a href="https://arhn.co.in/" target="_blank"><img src="{% static 'img/logo.png' %}" id="logo"></a>
+
     <div class="container text-center my-auto">
       <h1 class="mb-1">BATTLEBOTS</h1>
       <h3 class="mb-5">

@@ -1,0 +1,559 @@
+{% load static %}
+<html><head>
+    <style>
+body,
+html {
+ height: 100%;
+ width: 100%;
+ margin: 0;
+ padding: 0;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #4d3d3d; //4d3d3d3 Engaged.
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+svg {
+	width: 100%;
+	height: 100%;
+  cursor: move;
+}
+    @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:200,900');
+
+:root {
+  --text-color: hsla(210, 50%, 85%, 1);
+  --shadow-color: hsla(210, 40%, 52%, .4);
+  --btn-color: hsl(210, 80%, 42%);
+  --bg-color: #141218;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-color);
+}
+
+button {
+  position:relative;
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  font-family: "Source Code Pro";
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 30px;
+  color: var(--text-color);
+
+  background-color: var(--btn-color);
+  box-shadow: var(--shadow-color) 2px 2px 22px;
+  border-radius: 4px;
+  z-index: 0;
+  overflow: hidden;
+}
+
+button:focus {
+  outline-color: transparent;
+  box-shadow: var(--btn-color) 2px 2px 22px;
+}
+
+.right::after, button::after {
+  content: var(--content);
+  display: block;
+  position: absolute;
+  white-space: nowrap;
+  padding: 40px 40px;
+  pointer-events:none;
+}
+
+button::after{
+  font-weight: 200;
+  top: -30px;
+  left: -20px;
+}
+
+.right, .left {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+.right {
+  left: 66%;
+}
+.left {
+  right: 66%;
+}
+.right::after {
+  top: -30px;
+  left: calc(-66% - 20px);
+
+  background-color: var(--bg-color);
+  color:transparent;
+  transition: transform .4s ease-out;
+  transform: translate(0, -90%) rotate(0deg)
+}
+
+button:hover .right::after {
+  transform: translate(0, -47%) rotate(0deg)
+}
+
+button .right:hover::after {
+  transform: translate(0, -50%) rotate(-7deg)
+}
+
+button .left:hover ~ .right::after {
+  transform: translate(0, -50%) rotate(7deg)
+}
+
+/* bubbles */
+button::before {
+  content: '';
+  pointer-events: none;
+  opacity: .6;
+  background:
+    radial-gradient(circle at 20% 35%,  transparent 0,  transparent 2px, var(--text-color) 3px, var(--text-color) 4px, transparent 4px),
+    radial-gradient(circle at 75% 44%, transparent 0,  transparent 2px, var(--text-color) 3px, var(--text-color) 4px, transparent 4px),
+    radial-gradient(circle at 46% 52%, transparent 0, transparent 4px, var(--text-color) 5px, var(--text-color) 6px, transparent 6px);
+
+  width: 100%;
+  height: 300%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  animation: bubbles 5s linear infinite both;
+}
+
+@keyframes bubbles {
+  from {
+    transform: translate();
+  }
+  to {
+    transform: translate(0, -66.666%);
+  }
+}
+  #logo{
+    position:absolute;
+    top:5%;
+    left:5%;
+    height:100px;}
+    @media (max-width:767px)
+    {#logo{
+    margin-top:-10px;
+    height:80px;
+ }}</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+<script src="https://unpkg.com/zdog@1.0.1/dist/zdog.dist.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+   <body>
+    <a href="https://arhn.co.in/" target="_blank"><img src="{% static 'img/logo.png' %}" id="logo"></a>
+<script>setTimeout(function() {
+    $('#mydiv').fadeOut('fast');
+}, 5000);</script>
+<div id="mydiv">
+    <h1 style="color:white;position:Absolute;top:20%;">
+        Wait For Results
+    </h1><svg id="burger" width="200" height="200"></svg>
+</div>
+<script>
+       const svg = document.getElementById('burger');
+
+const COLORS = {
+  arm:    '#181818',
+  bun:    '#FAAB3E',
+  cheese: '#FFDA01',
+  eye:    '#181818',
+  glove:  '#E81802',
+  patty:  '#892C0E',
+  seed:   '#FAD6A2',
+  tomato: '#E81802'
+}
+
+const DIAMETER = 200;
+const LENGTH = 24;
+const STROKE = LENGTH / 2;
+const HALFSTROKE = STROKE / 2;
+const TAU = Zdog.TAU;
+const ZOOM = 1.7;
+
+let sceneWidth = DIAMETER;
+let sceneHeight = DIAMETER;
+let viewWidth = sceneWidth * ZOOM;
+let viewHeight = sceneHeight * ZOOM;
+let svgWidth = svg.getAttribute('width');
+let svgHeight = svg.getAttribute('height');
+
+svg.setAttribute('viewBox', `${-viewWidth/2}  ${-viewHeight/2} ` + `${viewWidth} ${viewHeight}`);
+
+let animObj = {
+  browRotateZ: -0.1,
+  browTranslateY: STROKE,
+  burgerRotateX: 0,
+  burgerRotateZ: 0,
+  burgerTranslateX: 0,
+  burgerTranslateZ: 0,
+  leftArmRotateX: 3.75,
+  leftArmTranslateY: 0,
+  leftForeArmRotateX: 1.5,
+  rightArmRotateX: -3,
+  rightArmTranslateY: 0,
+  rightForeArmRotateX: 1.5,
+}
+
+let scene = new Zdog.Anchor({
+  rotate: {
+    x: 1.5,
+    z: -0.5
+  }
+});
+
+// ----- burger ----- //
+
+let burger = new Zdog.Anchor({
+  addTo: scene,
+})
+
+let patty = new Zdog.Cylinder({
+  addTo: burger,
+  color: COLORS.patty,
+  diameter: DIAMETER + HALFSTROKE,
+  fill: true,
+  length: LENGTH,
+  stroke: STROKE,
+});
+
+let cheese = new Zdog.Rect({
+  addTo: patty,
+  color: COLORS.cheese,
+  fill: true,
+  height: DIAMETER - STROKE,
+  stroke: STROKE,
+  width: DIAMETER - STROKE,
+  rotate: { z: TAU / 3 },
+  translate: { z: LENGTH }
+});
+
+let tomato = new Zdog.Cylinder({
+  addTo: cheese,
+  color: COLORS.tomato,
+  diameter: DIAMETER - HALFSTROKE,
+  fill: true,
+  length: LENGTH / 2,
+  stroke: false,
+  translate: { z: STROKE }
+});
+
+let bun = new Zdog.Hemisphere({
+  addTo: burger,
+  color: COLORS.bun,
+  diameter: DIAMETER,
+  stroke: STROKE,
+  translate: { z: (STROKE * 4) }
+});
+
+let bottom = new Zdog.Cylinder({
+  addTo: burger,
+  color: COLORS.bun,
+  diameter: bun.diameter,
+  length: LENGTH,
+  stroke: bun.stroke,
+  translate: { z: -LENGTH + -STROKE },
+});
+
+// ----- bun seeds ----- //
+
+let seedAnchor = new Zdog.Anchor({
+  addTo: bun
+});
+
+let seed = new Zdog.Shape({
+  addTo: seedAnchor,
+  color: COLORS.seed,
+  stroke: 8,
+  path: [{ x: -HALFSTROKE }, { x:  HALFSTROKE }],
+  translate: { z: (bun.diameter + bun.stroke) / 2 + 1 }
+});
+
+seedAnchor.copyGraph({
+  rotate: { x: 0.6, y: 0.35, z: 1 },
+});
+seedAnchor.copyGraph({
+  rotate: { x: -0.6, y: 0.35, z: -1 },
+});
+seedAnchor.copyGraph({
+  rotate: { x: 0.6, y: -0.35, z: -1 },
+});
+seedAnchor.copyGraph({
+  rotate: { x: -0.6, y: -0.35, z: 1 },
+});
+seedAnchor.copyGraph({
+  rotate: { y: -0.75 },
+});
+seedAnchor.copyGraph({
+  rotate: { y: 0.75 },
+});
+
+// ----- face ----- //
+
+let faceAnchor = new Zdog.Anchor({
+  addTo: bun,
+  rotate: { x: TAU / 4 },
+  translate: {
+    y: bun.diameter / 2,
+    z: bun.diameter / 6,
+  }
+});
+
+let eye = new Zdog.Ellipse({
+  addTo: faceAnchor,
+  closed: true,
+  color: COLORS.eye,
+  diameter: STROKE,
+  fill: true,
+  stroke: HALFSTROKE,
+  rotate: { z: TAU / -4 },
+  translate: { x: STROKE * -3 },
+});
+
+eye.copy({
+  translate: { x: STROKE * 3 },
+});
+
+let brow = new Zdog.Shape({
+  addTo: faceAnchor,
+  color: COLORS.patty,
+  stroke: STROKE,
+  path: [{ x: -STROKE }, { x: STROKE }],
+  rotate: { z: -animObj.browRotateZ },
+  translate: {
+    x: STROKE * -3,
+    y: animObj.browTranslateY
+  }
+});
+
+brow.copy({
+  rotate: { z: animObj.browRotateZ * -1 },
+  translate: {
+    x: STROKE * 3,
+    y: animObj.browTranslateY
+  }
+});
+
+// ----- arms ----- //
+
+let leftArm = new Zdog.Anchor({
+  addTo: burger,
+  rotate: {
+    x: animObj.leftArmRotateX,
+    y: 0.6,
+  },
+  translate: { x: (DIAMETER / -2) - STROKE - HALFSTROKE }
+})
+
+let arm = new Zdog.Shape({
+  addTo: leftArm,
+  color: COLORS.arm,
+  stroke: STROKE * 2,
+  path: [ { z: 0 }, { z: DIAMETER / 4 } ]
+});
+
+let foreArm = new Zdog.Shape({
+  addTo: arm,
+  color: COLORS.arm,
+  stroke: STROKE * 2,
+  path: [ { z: 0 }, { z: DIAMETER / 4 } ],
+  rotate: {
+    x: animObj.leftForeArmRotateX,
+    y: -0.6,
+    z: 0.2
+  },
+  translate: { z: (DIAMETER / 4) + 1 }
+});
+
+let glove = new Zdog.Shape({
+  addTo: foreArm,
+  color: COLORS.glove,
+  fill: true,
+  stroke: DIAMETER / 3,
+  rotate: { z: 0 },
+  translate: {  z: (DIAMETER / 4) + (STROKE* 2) }
+});
+
+let rightArm = leftArm.copyGraph({
+  rotate: {
+    x: animObj.rightArmRotateX,
+    y: -0.4,
+    z: -1
+  },
+  translate: { x: (DIAMETER / 2) + STROKE + HALFSTROKE }
+})
+
+// ----- movements ----- //
+
+let tl = new TimelineMax({ repeat: -1, onUpdate: animate });
+
+let defaultStance = {
+  burgerTranslateZ: 10,
+  burgerRotateX: -0.15,
+  leftArmRotateX: 4,
+  rightArmRotateX: -2.5,
+  ease: Power1.easeInOut,
+  repeat: 3,
+  yoyo: true
+}
+
+tl.to(animObj, 0.5, defaultStance)
+.to(animObj, 0.15, {
+  burgerRotateX: 0.25,
+  burgerRotateZ: -1,
+  leftArmRotateX: 5,
+  leftArmTranslateY: 20,
+  rightArmRotateX: -4,
+  leftForeArmRotateX: 0,
+  ease: Power2.easeInOut,
+  repeat: 1,
+  yoyo: true
+})
+.to(animObj, 0.5, defaultStance)
+.to(animObj, 0.15, {
+  burgerRotateX: -0.5,
+  burgerRotateZ: -1,
+  leftArmRotateX: 5,
+  leftArmTranslateY: 20,
+  rightArmRotateX: -4,
+  leftForeArmRotateX: 0,
+  ease: Power2.easeInOut,
+  repeat: 3,
+  yoyo: true
+})
+.to(animObj, 0.15, {
+  burgerRotateX: 0.25,
+  burgerRotateZ: 1,
+  leftArmRotateX: 4,
+  leftArmTranslateY: 0,
+  rightArmRotateX: -2,
+  rightForeArmRotateX: 0,
+  ease: Power2.easeInOut,
+  repeat: 1,
+  yoyo: true
+})
+.to(animObj, 0.5, defaultStance)
+.to(animObj, 0.15, {
+  burgerRotateX: -0.25,
+  burgerRotateZ: -1,
+  leftArmRotateX: 5,
+  leftArmTranslateY: 20,
+  rightArmRotateX: -4,
+  leftForeArmRotateX: 0,
+  ease: Power1.easeInOut,
+  repeat: 1,
+  yoyo: true
+})
+.to(animObj, 0.15, {
+  burgerRotateX: 0.5,
+  burgerRotateZ: 1,
+  leftArmRotateX: 4,
+  leftArmTranslateY: 0,
+  leftForeArmRotateX: 0,
+  rightArmRotateX: 0,
+  rightArmTranslateY: 40,
+  ease: Power1.easeOut,
+  repeat: 1,
+  repeatDelay: 1,
+  yoyo: true
+})
+.to(animObj, 0.5, defaultStance)
+.to(animObj, 0.2, {
+  browRotateZ: -0.2,
+  browTranslateY: 20,
+  burgerTranslateZ: -5,
+  burgerRotateX: -0.05,
+  leftArmRotateX: 4,
+  rightArmRotateX: -2.5,
+  ease: Power1.easeInOut,
+  repeat: 1,
+  repeatDelay: 0.75,
+  yoyo: true
+})
+
+function applyAnimationValues() {
+  brow.translate.y = animObj.browTranslateY;
+  brow.rotate.z = animObj.browRotateZ;
+  burger.translate.x = animObj.burgerTranslateX;
+  burger.translate.z = animObj.burgerTranslateZ;
+  burger.rotate.x = animObj.burgerRotateX;
+  burger.rotate.z = animObj.burgerRotateZ;
+  leftArm.rotate.x = animObj.leftArmRotateX;
+  leftArm.translate.y = animObj.leftArmTranslateY;
+  leftArm.children[0].children[0].rotate.x = animObj.leftForeArmRotateX;
+  rightArm.rotate.x = animObj.rightArmRotateX;
+  rightArm.translate.y = animObj.rightArmTranslateY;
+  rightArm.children[0].children[0].rotate.x = animObj.rightForeArmRotateX;
+}
+
+// ----- animate ----- //
+
+function animate() {
+  applyAnimationValues();
+  scene.updateGraph();
+  render();
+}
+
+function render() {
+  empty( svg );
+  scene.renderGraphSvg( svg );
+}
+
+animate();
+
+function empty( element ) {
+  while ( element.firstChild ) {
+    element.removeChild( element.firstChild );
+  }
+}
+
+// ----- drag ----- //
+
+// click drag to rotate
+let dragStartRX, dragStartRY;
+let minSize = Math.min( svgWidth, svgHeight );
+
+// add drag-rotatation with Dragger
+new Zdog.Dragger({
+  startElement: svg,
+  onDragStart: function() {
+    isSpinning = false;
+    dragStartRX = scene.rotate.x;
+    dragStartRY = scene.rotate.y;
+  },
+  onDragMove: function( pointer, moveX, moveY ) {
+    scene.rotate.x = dragStartRX - ( moveY / minSize * TAU );
+    scene.rotate.y = dragStartRY - ( moveX / minSize * TAU );
+  }
+});</script>
+<script>
+    $(document).ready(function() {
+      $('#mybutton').hide().delay(5000).fadeIn(2200);
+});
+    </script>
+
+<button style="--content: '';" id="mybutton" onclick="ready" href="{% url 'match_test' %}">
+      <div class="left"></div>
+    Check Your Result
+  <div class="right"></div>
+</button>
+</body></html>

@@ -175,7 +175,78 @@
       		transform-origin:center center;
       		animation:shadow 1.1s ease-in-out 0s infinite alternate}
 
+		    #logo{
+    position:absolute;
+    top:5%;
+    left:5%;
+    height:100px;}
+    @media (max-width:767px)
+    {#logo{
+    margin-top:-10px;
+    height:80px;
+ }}
+ @media(min-width:768px){
+ #timeloader{
+  position:relative;
+  top:80px;
+  ;}}
+ @import url("https://fonts.googleapis.com/css?family=Sacramento&display=swap");
 
+#timeloader{
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+    color: red;
+  font-family: "Sacramento", cursive;
+
+  animation: blink 6s infinite;
+  -webkit-animation: blink 6s infinite;
+}
+ @-webkit-keyframes blink {
+  20%,
+  24%,
+  55% {
+    color: #111;
+    text-shadow: none;
+  }
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+/*     color: #fccaff;
+    text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+      0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+    color: #fff6a9;
+  }
+}
+
+@keyframes blink {
+  20%,
+  24%,
+  55% {
+    color: #111;
+    text-shadow: none;
+  }
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+/*     color: #fccaff;
+    text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+      0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+    color: #fff6a9;
+  }
+}
   </style>
 
   <!-- Bootstrap Core CSS -->
@@ -192,6 +263,7 @@
 </head>
 <body>
 
+  <a href="https://arhn.co.in/" target="_blank"><img src="{% static 'img/logo.png' %}" id="logo"></a>
 
 <!-- Services -->
 <div class="robot"><svg version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -314,15 +386,15 @@
 
 
   <section class="content-section bg-primary text-white text-center" id="abc">
-  <a class="menu-toggle rounded" href="#">
+<a class="menu-toggle rounded" href="#">
     <i class="fa fa-bars"></i>
   </a>
 
-<nav>
+<nav id="timeloader">
   <ul class="sidebar-nav">
-    <li class="sidebar-brand" style="width: max-content;">
-      <a class="js-scroll-trigger" >Budget left: {{user.profile.money}}</a>
-        <h5 id = "time" style="color: black;">Time left:</h5>
+    <li class="sidebar-brand">
+      <a class="js-scroll-trigger" style="font-size:30px;">Budget left: {{user.profile.money}}</a>
+        <h5 id = "time" style="font-size:20px;">Time left:</h5>
     </li>
 
 
@@ -392,7 +464,7 @@
       </div>
         {% endfor %}
 	</div>
-	<a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'match_test_1' %}">BATTLE</a>
+	<a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'load' %}">BATTLE</a>
   </section>
 
 
