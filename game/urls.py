@@ -23,7 +23,7 @@ urlpatterns=[
 			path('index2/play2/<key>/confirm2',views.ordered_defences,name='confirm-add-2'),
 			path('index2/sell2',views.sell_defence_list,name = 'sell-defence'),   ##error
 			path('index2/sell2/<key>/delete',views.sell_defence,name='confirm-del-2'),
-
+            path('index2/load/',views.load,name='load'),
 			##main
 			path('index2/main',views.match,name= 'match_test'),
 			path('index2/main1',views.match1,name= 'match_test_1'),

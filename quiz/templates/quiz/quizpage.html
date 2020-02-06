@@ -26,7 +26,7 @@
 	<style>
 		body{
 			overflow-x: hidden;
-			overflow-y: auto;
+			overflow-y: hidden;
 		}
 		#particles-js {
 			margin-top: 10%;
@@ -39,12 +39,18 @@
 
 		}
 
-		@media (min-width:1000px) {
+		@media (min-width:768px) {
 			#container {
 				position: absolute;
 				left: 6%;
 				right: 10%;
+
 			}
+			#question{
+			font-size:6em;}
+			#logo{
+			top:10%;
+			height:100px;}
 
 			.q{
 				transform: translateY(-50px);
@@ -56,11 +62,22 @@
 				left: 6%;
 				right: 10%;
 			}
-
+#question{
+			font-size:3em;}
 			.q{
 				transform: translateY(10px);
 			}
 		}
+		      #logo{
+    position:absolute;
+    left:5%;
+    }
+    @media (max-width:767px)
+    {#logo{
+    margin-top:20px;
+     top:5%;
+    height:60px;
+ }}
 	</style>
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 </head>
@@ -77,6 +94,7 @@
 	<br />
 	<br />
 	<canvas id="canvas"></canvas>
+<a href="https://arhn.co.in/" target="_blank"><img src="{% static 'img/logo.png' %}" id="logo"></a>
 
 	<div id="container">
 
@@ -91,7 +109,7 @@
 							<br />
 							<h2>{{ message }}</h2>
 
-							<h1 class="mb-5" style="color: white; font-size: 1.5em; font-family: 'Georgia, serif'; ">
+							<h1 class="mb-5" id="question" style="color: white; font-family: 'Georgia, serif'; ">
 								Question {{round.round}}</h1>
 								<img class="img-fluid img-thumbnail" src="{{ round.image.url }}" style="width:300px;height:200px;margin-bottom: 2px;"><br>
 							<h3 class="mb-5" style="color: white; font-size: 1.5em; font-family: 'Roboto';">

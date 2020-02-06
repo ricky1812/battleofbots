@@ -11,7 +11,8 @@ def index(request):
 
 def index1(request):
 	return render(request,'game/index.html')
-
+def load(request):
+	return render(request,'game/load.html')
 
 def signup(request):
 	if request.method=='POST':
